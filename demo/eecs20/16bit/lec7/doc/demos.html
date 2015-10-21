@@ -1,0 +1,42 @@
+<!-- %W%   %G% -->
+<html>
+<head>
+<title>Quantization Demos</title>
+</head>
+<body>
+[<a href="http://parker.eecs.berkeley.edu/~ee20/">        EECS 20 Home     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/lectures/07_Digital/">             Corresponding lecture  </a>]
+<hr>
+<h1>Lecture 7 Demonstrations</h1>
+<h2>Quantization of a sinusoid</h2>
+<p>
+In this demonstration, we run a program that generates a sine wave
+and quantizes it to some number of bits.  The control panel for the program
+is as follows:
+<p>
+<img src="quant_ctl.gif" alt="[control panel]">
+<p>
+The sine wave quantized to two bits (four levels) looks like this:
+<p>
+<img src="quant_sine.gif" alt="[signal display]">
+<p>
+The sound is noisy at fewer than 5 bits, but fairly accurate at 5 bits.
+Notice that the frequency is identifiable even for the most coarsly quantized
+signal (1 bit).
+<h2>Quantization of speech</h2>
+<p>
+In this demonstration, we listen to a speech signal quantized by varying
+omounts.   Even with only one bit per sample, the speech signal is
+understandable, although it is very noisy.
+At six bits per sample (64 levels), the quality is quite good.
+In general, quantizing speech signals well is harder than quantizing
+sinusoids because they have more <em>dynamic range</em>.
+In other words, the signal level varies quite a bit.  With fixed
+quantization, the quieter parts of the signal will be more coarsely
+quantized than the louder parts.
+<HR>
+Copyright &#169 1996, The Regents of the University of California.
+All rights reserved.
+<br>
+Last updated: %D%,
+comments to: <author>eal@eecs.berkeley.edu</author>

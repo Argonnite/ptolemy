@@ -1,0 +1,201 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc5.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc7.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+ 
+<a name="997693">
+<center><h2><a name="A.6   Known bugs">A.6   Known bugs</a></h2></center>
+</a><a name="997694">
+There are a number of known bugs that we have not had a chance to fix. You may find useful information about architecture dependencies in <code>$PTOLEMY/mk/config-$PTARCH.mk</code> for the particular architecture you are running under.<p>
+</a><a name="997696">
+<h3><a name="A.6.1   Bugs in vem">A.6.1   Bugs in vem</a></h3>
+</a><ul><a name="997698">
+<li>Deleting wires that are too long (i.e., end of wire is past the terminal, but near it) can result in <code>vem</code> dumping core. 
+</a><a name="997701">
+<li>Labels that end with a carriage return are neither displayed nor printed correctly.
+</a><a name="997703">
+<li>Editing icons stimulates a memory leak in <code>vem</code> that can make the process grow quite big. After editing a few dozen icons, you may wish to exit <code>vem</code> and restart.
+</a><a name="997705">
+<li>The "layer" command only works when editing icons, not when editing schematics.
+</a><a name="997707">
+<li>The "copy-objects" command will copy from one window to another only when editing icons, not when editing schematics.
+</a><a name="997708">
+<li><code>vem</code> or <code>pigiRpc</code> may fail to start up on 4 bit (16 color) screens. At UC Berkeley, we use 8 bit and 24 bit screens. Black and white (1 bit) support in vem is a little weak. If you are on a black and white screen, you may need to modify <code>$PTOLEMY/lib/pigiXRes9</code>. (Note that <code>$PTOLEMY/lib/pigiXRes9.bw</code> is read when the <code>-bw</code> <code>pigi</code> option is used to create black and white screen dumps from a color monitor. <code>pigiXRes9.bw</code> has very little to do with running on a black and white screen).
+</a><a name="997709">
+<li>If the <code>VEMBINARY</code> environment variable is set, then <code>bin/pigiEnv.csh</code> will use the contents of that variable as the <code>vem</code> binary. However, the binary must be named <code>vem</code>, or there will be minor problems with X resources, such as small fonts and incorrect snap. Most users will never use the <code>VEMBINARY</code> environment variable. It is primarily used to debug <code>vem</code>.
+</a><a name="997710">
+<li>If your X server runs out of colors, <code>vem</code> may crash. One workaround is to not run color <br>hogs like <code>Netscape</code>, or to limit the number of colors <code>Netscape</code> can use.
+</a><a name="997711">
+<li>Bug fixes to <code>vem</code> now mean that <code>vem</code> is more picky about text label heights. Currently, the range for text label heights is 0 to 80. If you select text and then use E, to edit the label, you may see an error if your text height is greater than 80. One workaround is to delete the text and reenter it with a height that is within the proper range. Another workaround is to use an old <code>vem</code> binary to edit the height and set it to within the range.
+</a><a name="997712">
+<li>If you re-read a facet that has an open run window, you won't be able to dismiss the run window. The workaround is to open a new run window.
+</a></ul><a name="997714">
+<h3><a name="A.6.2   Bugs in pigi">A.6.2   Bugs in pigi</a></h3>
+</a><ul><a name="997715">
+<li>It is possible to make more than one icon to represent a given star. For instance, the icon <code>And</code> and <code>And.input=2</code> refer to the same star, but the former can have any number of inputs, while the latter has exactly two inputs. As of this writing, this facility does not work for galaxies. You should create only one icon for each galaxy.
+</a><a name="997716">
+<li><code>$PTOLEMY/bin/pigi</code> is a link to <code>$PTOLEMY/bin/pigiEnv.sh</code> which may add to your path. Under certain circumstances, you may get the message `Warning: ridiculously long PATH truncated'. To work around this problem, try shortening your path. One trick is to use shorter pathnames in your path, perhaps using symbolic links.
+</a><a name="997717">
+<li>If your X server runs out of colors, <code>pigi</code> may crash. One workaround is to not run color hogs like <code>Netscape</code>, or to limit the number of colors <code>Netscape</code> can use.
+</a><a name="997718">
+<li>The compile-SDF target fails if a galaxy has incrementally linked in stars. The problem is that the <code>.h</code> file for the incrementally linked in star cannot be found by compile-SDF. As a workaround try editing the makefile in <code>~/PTOLEMY_SYSTEMS</code> and adding the directory where the incrementally linked stars are. Then build the binary by hand.
+</a><a name="997719">
+<li>The compile-SDF target cannot handle star parameters that use the Tcl Interpreter to evaluate Tcl commands.
+</a><a name="997720">
+<li>On some machines, the SDF Matlab demonstrations will appear to hang Ptolemy. This is a known bug in the Matlab external interface library that requires that the Matlab process be attached to a terminal. There are two workarounds: (1) run Ptolemy in the foreground, or (2) manually control the Ptolemy interface to Matlab by using the matlab command in <code>ptcl</code> (see <a href="ptcl.doc9.html#687586">
+3.9.10 on page 3-16</a>) via the Ptolemy console. In both workarounds, the Matlab process will be attached to a terminal.
+</a><a name="997725">
+<li>The Networks Of Workstations active messages (<code>NOWam</code>) CGC target is slow, but it does run under Solaris. However these demos will not work in an environment that requires Kerberos for <code>rsh</code>-ing jobs.
+</a><a name="997727">
+<li>Mixed CGC/VHDL/TclTk demos leave <code>ptvhdlsim</code> running after exiting.
+</a><a name="997728">
+<li>Tom Lane pointed out the following problem in 0.7:
+</a><a name="997729">
+<dt><code>	</code>
+<dd>	An initializable delay attached to any multiporthole output will fail. For example "Fork -&gt; Printer", if you use the double-arrowed form of the Fork icon and put an initializable delay on the arc.</a><a name="998250">
+<li>The ACYLOOP Scheduler can fail in various ways for both simulation and code generation.  In particular, Compile-SDF should use the DEF scheduler, not ACYLOOP.
+</a></ul><a name="997730">
+<h3><a name="A.6.3   Bugs in tycho">A.6.3   Bugs in tycho</a></h3>
+</a><ul><a name="997732">
+<li>If you start up tycho with Ptolemy in the background (i.e, <code>tycho -ptrim &amp;</code>), then exiting from the Matlab console may hang. The workaround is to place your <code>tycho</code> process into the foreground. This is a known bug with Matlab.
+</a><a name="997733">
+<li>See <code>$PTOLEMY/tycho/doc/bugs.html</code> for a more complete list of Tycho bugs.
+</a></ul><a name="997734">
+<h3><a name="A.6.4   Code generation bugs">A.6.4   Code generation bugs</a></h3>
+</a><ul><a name="997735">
+<li>The CGC multirate <code>filterbank</code> and CGC <code>chaoticBits</code> demos bring up messages about initializable delays.
+</a><a name="997736">
+<li>If you try to run the CGC demos that generate sound, and you do not have a properly configured audio device, or you do not have write permission to <code>/dev/audio</code>, then you get a cryptic and uninformative error message, rather than something useful. The CGC <code>tremolo</code> demo will probably only work on a Sun SPARCstation running SunOS4.1.3 or Solaris2.x. The CGC <code>alive</code> demo will only work on an SGI.
+</a><a name="997737">
+<li>The use of initializable delays and variable delays in the code generation domains may result in incorrect code being generated. Variable delays are delays which depend upon the value of a galaxy or universe parameter. The workaround is to use regular delays of a constant value (i.e. "4") in the code generation domains. Note that initializable and variable delays work fine in the simulation domains.<br><br>For example, the <code>CGC:multirate:filterbank</code> demo produces initializable delay warnings. The output from the <code>CGC:multirate:filterbank</code> demo is different than the output from the <code>SDF:multirate:filterbank</code> demo in that the original and reconstructed signals don't overlap as much in the CGC version.
+</a></ul><a name="997739">
+<h3><a name="A.6.5   Bugs in the X11 version of pxgraph">A.6.5   Bugs in the X11 version of pxgraph</a></h3>
+</a><ul><a name="997742">
+<li>If the X11 version of <code>pxgraph</code> is given exceptional numeric input, such as the IEEE floating point <code>Inf</code>, <br>-<code>Inf</code>, or <code>NaN</code>, then it displays a blank window only.
+</a><a name="997745">
+<li>If <code>pxgraph</code> is given an empty file to plot, all it does is send a message "problems with input data" to the standard output.
+</a><a name="997746">
+<li>There is no way to produce hardcopy without running <code>pxgraph</code> interactively. 
+</a><a name="997747">
+<li>Specifying the colors for data sets using X resources does not work.
+</a><a name="998435">
+<li>See <code>$PTOLEMY/src/pxgraph/README.txt</code> for information about the Java version of <code>pxgraph</code>.
+</a></ul><a name="997748">
+<h3><a name="A.6.6   HPPA specific bugs">A.6.6   HPPA specific bugs</a></h3>
+</a><ul><a name="997749">
+<li>If you are rebuilding Ptolemy on the hppa, you must have X11 installed. Apparently, HP ships machines without most of the X11 include files. The prebuilt binaries also use libraries from X11R6. See <code>ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/contrib/hpux</a></code>.
+</a><a name="997751">
+<li>If you are building the Gnu tools under HPUX10.20, you will also need Gnu <code>sed</code>, which is downloadable from the Ptolemy ftp site in <a href="ftp://ptolemy.eecs.berkeley.edu/pub/gnu/hppa"><code>ftp://ptolemy.eecs.berkeley.edu/pub/gnu/hppa</code></a> and you may need to patch HPUX. See <code>$PTOLEMY/src/gnu/README</code> for details.
+</a><a name="997754">
+<li>If you are using the prebuilt binaries under HPUX10.20, then you will need to install X11R6 shared libraries. See <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/ptolemy0.7/README.hpux">ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/ptolemy0.7.1/README.hpux</a></a></code>
+</a><a name="997758">
+<li>The CGC demo <code>animatedLMS</code> demo dumps core upon start-up.
+</a><a name="997759">
+<li>On the hppa, under the HP C++ compiler, <code>Xhistogram</code> may have rounding problems.
+</a><a name="997760">
+<li>On the hppa, the CGC <code>animatedLMS</code> demo requires editing of Target Parameters to compile.
+</a><a name="997761">
+<li>On the hppa, the CGC <code>animatedLMS</code> demo gets an Arithmetic Exception and core dumps.
+</a><a name="997762">
+<li>On the hppa, the SDF <code>animatedLMS</code> demo generates a "<code>non-numeric value</code>" error in Tcl if the step size is so large that the system is made to go unstable.
+</a><a name="997763">
+<li>Compilation under older versions of <code>hppa.cfront</code> may fail. The problem seems to be with the <code>+A</code> <code>ld</code> command line argument. You must use the <code>+A</code> <code>ld</code> argument when compiling <code>pigiRpc</code> and <code>ptcl</code>, or incremental linking of new stars will fail. However, use of the <code>+A</code> argument produces the warning:<br><br><code>CC: error: could not find __head symbol. You must use CC to link. If your main is not in C++, a call to _main() is required.(740)<br></code><br>Even if this warning is printed, a viable binary is still produced. The <code>+</code>A <code>ld</code> argument is not necessary for other binaries, such as <code>vem</code> and <code>pxgraph</code>.
+</a><a name="997764">
+<li>If you are running an older version of the HP Cfront compiler, you may need to add <br><code>-DPOSTFIX_OPT=</code> to your c++ command line. See <code>config-hppa.cfront.mk</code>.
+</a><a name="997765">
+<li>If you are having problems incrementally linking in stars, and you are getting messages like:<br><code>/bin/ld: (Warning) Inter-quadrant branch in XXX<br></code>where <code>XXX</code> is the name of the <code>.o</code> file you are trying to link in, <br>then you may need to be compiling your stars with the proper level of optimization. See <a href="install.doc5.html#997665">
+"Dynamic linking and makefiles" on page &#32;A-31</a> for more information.
+</a><a name="997769">
+<li>If you have problems with <code>ld</code> under HPUX, you should try patching your operating system with a patch from HP. Try <code><a href="http://europe-support.external.hp.com">http://europe-support.external.hp.com</a></code> if you are in Europe, <a href="http://us-support.external.hp.com"><code>http://us-support.external.hp.com</code></a> if you are anywhere else.
+</a><a name="997774">
+<li>If, under HPUX9.x, you get a message like:<br><code>ld: fatal: relocations remain against allocatable but non-writable sections<br></code>Then you may need to apply a patch to <code>ld</code>. 
+</a><a name="997775">
+<li>To incrementally link new stars under HPUX9.x, you will probably need to supply a <code>make.template</code> file. See <a href="install.doc5.html#997648">
+"Dynamic linking fails" on page &#32;A-29</a>.
+</a><a name="997779">
+<li>The <code>multilink</code> command seems to trigger <code>Inter-quadrant branch messages</code>, and then hang pigi. We are not sure why.
+</a><a name="997780">
+<li>HPUX10.x will build a <code>pigiRpc</code> with the Process Network (PN) domain, but the event loop is broken. The PN domain is not part of the default hppa build, so this problem will not affect most users.
+</a><a name="997782">
+<li>If you are under HPUX10, then building the PN domain requires Distributed Computing Environment (DCE) threads. You will need to install the DCE development set of the OS CDs. If you don't have a <code>/usr/include/pthread.h</code>, then you probably don't have the DCE development set installed.
+</a><a name="998442">
+<li>The Java version of <code>pxgraph</code> is slow under HPUX.  See <code>$PTOLEMY/src/pxgraph/README.txt</code> for information on using the X11 version of <code>pxgraph</code>.
+</a></ul><a name="997784">
+<h3><a name="A.6.7   IBM AIX specific bugs">A.6.7   IBM AIX specific bugs</a></h3>
+</a><a name="997785">
+Xavier Warzee suggest the following for gcc and AIX.<p>
+</a><a name="997786">
+To generate <code>gcc-2.7.2</code> under AIX3.2.5 with <code>cc</code>, you need the PTF U436313. The PTF U432238 is suggested in the README.RS6000 file from the <code>gcc-2.7.2</code> distribution, but this PTF is superseded by the PTF U436313. This PTF allows you to upgrade the cc IBM compiler from the release 1.3.0.0 (delivered with AIX 3.2.5) to the release 1.3.0.33 which compiles gcc-2.3.6.<p>
+</a><a name="997788">
+<h3><a name="A.6.8   Silicon Graphics IRIX5 specific bugs">A.6.8   Silicon Graphics IRIX5 specific bugs</a></h3>
+</a><a name="997789">
+The Silicon Graphics port is not one of our main ports, so there are several serious bugs:<p>
+</a><ul><a name="997790">
+<li>Linking of a full size <code>pigiRpc</code> binary can fail with a `GOT Overflow' message. The problem is that <code>pigiRpc</code> has too many symbols. The Irix <code>dso</code> man page suggests using shared libraries, but <code>gcc-2.7.2</code> may not support C++ shared libraries under Irix. The workaround is to run <code>ptrimRpc</code> rather than <code>pigiRpc</code>.
+</a><a name="997791">
+<li>Installation of the <code>xv</code> man pages will fail. Irix does not have <code>nroff</code> and <code>tbl</code>.
+</a><a name="997792">
+<li>To build the CGC demos, you may need to exit <code>pigi</code>, set the environment variable <code>SGI_CC</code> to <code>-cckr</code>:<br><code>setenv SGI_CC -cckr<br></code>and restart <code>pigi</code>. See the sgi <code>cc</code> man page for more information.
+</a><a name="997793">
+<li><code>sdf:image:motionCompensation</code> demo has some odd looking blocks in the McompOutput.1 image. Some of the images from the <code>irix5</code> run of this demo do not look like images in the sun4 version of this demo.
+</a></ul><a name="997795">
+<h3><a name="A.6.9   Linux specific bugs">A.6.9   Linux specific bugs</a></h3>
+</a><a name="997796">
+We do not have access to a Linux system onsite at UC Berkeley, so our support of Linux is very limited. If you are having problems with prebuilt Linux binaries, you may want to try rebuilding Ptolemy from scratch. You may also want to check the ptolemy-hackers archives, located at the bottom of the Ptolemy home page at <code>http://ptolemy.eecs.berkeley.edu</code>.<p>
+</a><ul><a name="997797">
+<li>Linux uses Gnu <code>ar</code>, which seems to have problems if it is run on two files whose names are not unique in the first 13 characters. We have renamed a number of stars to workaround this problem. The <code>make checkjunk </code>command will report the names of files that are not unique in the first 13 characters. You should only have problems with this if you are creating stars of your own and placing them in libraries.
+</a><a name="997798">
+<li>If you are running the Linux version on a standalone machine, then please refer to section <a href="install.doc5.html#997325">
+"Mr. Ptolemy window does not come up" on page &#32;A-16</a>.
+</a></ul><a name="997803">
+<h3><a name="A.6.10   Sun Solaris 2.x specific bugs">A.6.10   Sun Solaris 2.x specific bugs</a></h3>
+</a><ul><a name="997804">
+<li>If you are building gcc under Solaris, you must have <code>/bin</code> in your path before <code>/usr/ucb </code>see <code>$PTOLEMY/src/gnu/README</code>.
+</a><a name="997805">
+<li>If, while linking, you get a message like<br><code>unable to locate archive symbol table: Format error: archive fmag<br></code>then you have probably run out of swap space. See the Solaris <code>swap</code> command for how to add more swap with <code>mkfile</code>.
+</a><a name="997811">
+<li>The Gnu make binary built for Solaris2.5 will not work with Solaris2.4. If you try to run the Solaris2.5 Gnu make binary under Solaris2.4, you will get an error message like: <br><code>ld.so.1: make: fatal: relocation error: symbol not found: setlinebuf: referenced in make</code>
+</a></ul><a name="997813">
+<h3><a name="A.6.11   Sun OS4 specific bugs">A.6.11   Sun OS4 specific bugs</a></h3>
+</a><ul><a name="997814">
+<li>If you are using the prebuilt Gnu binaries, then you may have problems if your Ptolemy distribution is not at <code>/users/ptolemy</code>, and you try setting the Gnu environment variables with the <code>$PTOLEMY/bin/g++-setup</code> script. We are working towards a solution, but you might find the following variables will work for you: <br><code>unsetenv GCC_EXEC_PREFIX<br>unsetenv C_INCLUDE_PATH<br>unsetenv CPLUS_INCLUDE_PATH<br>setenv LIBRARY_PATH $PTOLEMY/gnu/$PTARCH/lib<br>setenv COMPILER_PATH $PTOLEMY/gnu/$PTARCH/lib/gcc-lib/$PTARCH/2.7.2.2<br>setenv GCC_INCLUDE_DIR $PTOLEMY/gnu/$PTARCH/lib/gcc-lib<br></code>We are working on a solution for this.
+</a><a name="997815">
+<li>Under SunOS4.x, we use the older BSD <code>ld</code> style incremental linking because of problems with g++ shared libraries. This means that the SunOS4.x binaries must be linked statically instead of dynamically, so the binaries are much larger than on platforms that use <code>dlopen()</code> style incremental linking. It also means that only the symbols that are used by stars present at link time are actually present in the binary. This can be a problem if your incrementally linked star uses a symbol from <code>libg++.a</code> that is not used by a star present at link time. See Appendix D, "Shared Libraries" for more information.
+</a></ul><a name="997816">
+<h3><a name="A.6.12   DEC Alpha specific bugs">A.6.12   DEC Alpha specific bugs</a></h3>
+</a><ul><a name="997817">
+<li>The DEC Alpha port is the first true 64 bit port of Ptolemy, so there are bound to be 64 bit vs. 32 bit bugs
+</a><a name="997818">
+<li>The CGC fixed-point demos give incorrect results. This is most likely due to the fact that the DEC Alpha is 64 bits.
+</a><a name="997819">
+<li>SDF/DDF Wormholes cause <code>SIGFPE</code> signals, which crash <code>pigi</code>. The DDF <code>ifThenElse</code> demo uses such SDF/DDF Wormhole.
+</a><a name="997820">
+<li>The full pigiRpc may fail to start with messages like:<br><code>/sbin/loader: Fatal Error: lazy_text_resolve: symbol malloc should not have any relocation entry<br></code>The workaround is to do:<br><code>setenv LD_BIND_NOW yes<br></code>See the DEC Unix <code>loader</code> man page for more information about <code>LD_BIND_NOW</code>. You may see similar error messages when you run the CGC fixed point demos.
+</a><a name="997821">
+<li>Vem produces lots of <code>Unaligned Access</code> messages. The <code>pigi</code> script does<br><code>uac p noprint<br></code>to turn them off .
+</a></ul><a name="997823">
+<h3><a name="A.6.13   Gnu compiler bugs">A.6.13   Gnu compiler bugs</a></h3>
+</a><ul><a name="997824">
+<li>If you write your own stars, then be aware that <code>gcc-2.7.2</code> may not choose the expected cast. In particular, <code>g++</code> has been known to cast everything to <code>Fix</code> if the explicit cast is omitted. The arithmetic is then performed using fixed-point computations. This will be dramatically slower than double or integer arithmetic, and may yield unexpected results. It is best to explicitly cast states to the desired form. For more information, see the ptlang chapter in the Ptolemy Programmers Manual.
+</a><a name="997825">
+<li>If you already have Gnu make installed, and the binary is called <code>gmake</code>, then the installation of the Ptolemy Gnu tools may fail. The workaround is to create a link in your path from <code>make</code> to <code>gmake</code>.
+</a></ul>
+<hr><br>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc5.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc7.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+
+
+
+<address>
+<a href="mailto:ptolemy@eecs.berkeley.edu">ptolemy@eecs.berkeley.edu</a>
+</address>
+
+<i>Copyright &#169; 1990-1998, University of California.   All rights
+reserved.</i>
+<!-- Last updated: Thu Jun 11 22:45:41 1998 -->
+</body>
+</html>

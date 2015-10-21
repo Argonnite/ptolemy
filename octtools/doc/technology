@@ -1,0 +1,87 @@
+Technologies determine colors used in Ptolemy facets
+as well as the connector style.  The technology you use
+is determined by X resource vem*technology, which by
+default will be set to ~ptolemy/lib/technology.
+If your environment variable PIGIBW is set, the technology used
+will be in ~ptolemy/lib/tech4dump.  This technology is designed
+for creating screendumps that can be usefully printed in black and white.
+Another useful technology is in ~ptolemy/lib/tech4colorPrint, which
+is tuned for color printers.
+
+All technologies are stored in ~ptolemy/lib.
+Each technology is in a subdirectory.  For example,
+in ~ptolemy/lib/technology, there are two subdirectories
+of interest: gabriel and ptolemy.  The "gabriel" directory
+defines a technology used to read facets from Ptolemy's predecessor,
+called gabriel.  The ptolemy facets all use the technology in the
+ptolemy directory.
+
+Suppose you want to make all whites in the ptolemy technology
+black instead.  You can do the following:
+(Don't do this in our master copy, or you could become very
+unpopular).
+
+cd ~ptolemy/lib/technology/ptolemy/tap.views
+
+Then edit a file called schematic.pat changing the relative
+intensities of the red, green, and blue in each of the "layers".
+For instance, your could change:
+
+  (figureGroupDefault whiteSolid
+      (userData priority 5)
+      (width -2)
+      (color 1000 1000 1000)
+      (fillPattern 1 1 "1")
+  )
+
+to be
+
+  (figureGroupDefault whiteSolid
+      (userData priority 5)
+      (width -2)
+      (color 0 0 0)
+      (fillPattern 1 1 "1")
+  )
+
+which will be black.  Note that the layer will still be called "whiteSolid".
+
+Then run pat2tap, an octtools program, to generate the "tap" file used
+by Ptolemy:
+
+cd ~ptolemy/lib/technology/ptolemy
+pat2tap
+
+The following dialog will ensue:
+(you enter the stuff after the ":")
+	VEM Pattern Filename: tap.views/schematic.pat
+	Technology name in pattern file [physical]: schematic
+	TAP root directory [$OCTTOOLS/tech]: ~ptolemy/lib/technology
+	Output technology name [scmos]: ptolemy
+	Output view name [schematic]: 
+	Specify X host and display [no]: 
+	Output display type [MIT X Consortium]: GENERIC-COLOR
+	Color output device [yes]: 
+	Loaded technology 'schematic' from file 'tap.views/schematic.pat'
+	Saved results into ~ptolemy/lib/technology/ptolemy/tap.views:schematic:contents
+
+
+You should probably also update the technology for black and white monitors:
+
+pat2tap
+	VEM Pattern Filename: tap.views/schematic.bw.pat
+	Technology name in pattern file [physical]: schematic
+	TAP root directory [$OCTTOOLS/tech]: ~ptolemy/lib/technology
+	Output technology name [scmos]: ptolemy
+	Output view name [schematic]: 
+	Specify X host and display [no]: 
+	Output display type [MIT X Consortium]: PostScript-BW
+	Color output device [yes]: no
+	Loaded technology 'schematic' from file 'tap.views/schematic.bw.pat'
+	Saved results into ~ptolemy/lib/technology/ptolemy/tap.views:schematic:contents
+
+Unfortunately, although this creates a working technology, it has some
+artifacts.  We have provided a program to clean these up:
+
+~ptolemy/lib/technology/ptolemy/cleantap/cleantap
+
+	Enter cell name of tech facet:~ptolemy/lib/technology/ptolemy/tap.views

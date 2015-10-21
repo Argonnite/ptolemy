@@ -1,0 +1,182 @@
+{configure -canvasheight 600} {configure -canvaswidth 800}
+{titleSet title {Tycho Class Hierarchy}}
+{titleSet subtitle {created: Mon Aug 12 17:02:43 PDT 2002}}
+{add ::tycho::Glimpse {label {Glimpse} link {$TYCHO/util/devtools/Glimpse.itcl {}}} {::tycho::Query}}
+{add ::tycho::Shape {label {Shape} link {$TYCHO/edit/slate/Shape.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Model {label {Model} link {$TYCHO/kernel/model/Model.itcl {}}} {::tycho::Object}}
+{add ::tycho::EditEsterel {label {EditEsterel} link {$TYCHO/edit/textedit/EditEsterel.itcl {}}} {::tycho::EditProgram}}
+{add ::tycho::FontManager {label {FontManager} link {$TYCHO/kernel/gui/FontManager.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::ProfileJava {label {ProfileJava} link {$TYCHO/util/devtools/ProfileJava.itcl {}}} {::tycho::EditForest}}
+{add ::tycho::CompileJava {label {CompileJava} link {$TYCHO/util/devtools/CompileJava.itcl {}}} {::tycho::Compile}}
+{add ::tycho::ToolBar {label {ToolBar} link {$TYCHO/kernel/gui/ToolBar.itcl {}}} {::tycho::ButtonBox}}
+{add ::tycho::TclShell {label {TclShell} link {$TYCHO/kernel/gui/TclShell.itcl {}}} {::tycho::Edit}}
+{add ::tycho::GraphicEq {label {GraphicEq} link {$TYCHO/typt/controls/GraphicEq.itcl {}}} {::tycho::ControlSubpanel}}
+{add ::tycho::Terminal {label {Terminal} link {$TYCHO/edit/slate/Terminal.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::IconFrame {label {IconFrame} link {$TYCHO/edit/slate/IconFrame.itcl {}}} {::tycho::IconItem}}
+{add ::tycho::WidgetTree {label {WidgetTree} link {$TYCHO/kernel/gui/WidgetTree.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::HTML {label {HTML} link {$TYCHO/kernel/html/HTML.itcl {}}} {::tycho::Edit}}
+{add ::tycho::Displayer {label {Displayer} link {$TYCHO/kernel/gui/Displayer.itcl {}}} {::tycho::TopLevel}}
+{add ::tycho::Mathematica {label {Mathematica} link {$TYCHO/edit/textedit/Mathematica.itcl {}}} {::tycho::TclShell}}
+{add ::tycho::EditSpell {label {EditSpell} link {$TYCHO/kernel/gui/EditSpell.itcl {}}} {::tycho::Query}}
+{add ::tycho::RevControl {label {RevControl} link {$TYCHO/kernel/gui/RevControl.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::SmartLine {label {SmartLine} link {$TYCHO/edit/slate/SmartLine.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::ComplexItem {label {ComplexItem} link {$TYCHO/edit/slate/ComplexItem.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::CacheManager {label {CacheManager} link {$TYCHO/kernel/html/CacheManager.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Slate {label {Slate} link {$TYCHO/edit/slate/Slate.itcl {}}} {::tycho::IncrCanvas}}
+{add ::tycho::Oval {label {Oval} link {$TYCHO/edit/slate/Oval.itcl {}}} {::tycho::Shape}}
+{add ::tycho::EditItcl {label {EditItcl} link {$TYCHO/edit/textedit/EditItcl.itcl {}}} {::tycho::EditTcl}}
+{add ::tycho::Subpanel {label {Subpanel} link {$TYCHO/kernel/gui/Subpanel.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::ResourceFTP {label {ResourceFTP} link {$TYCHO/kernel/html/ResourceFTP.itcl {}}} {::tycho::ResourceRemote}}
+{add ::tycho::EditBubbleAndArc {label {EditBubbleAndArc} link {$TYCHO/edit/visedit/EditBubbleAndArc.itcl {}}} {::tycho::Graphics}}
+{add ::tycho::View {label {View} link {$TYCHO/kernel/gui/View.itcl {}}} {::tycho::TWidget}}
+{add ::ptolemy::Universe {label {Universe} link {$TYCHO/typt/kernel/Universe.itcl {}}} {::ptolemy::Galaxy}}
+{add ::tycho::Exec {label {Exec} link {$TYCHO/kernel/gui/Exec.itcl {}}} {::tycho::Object}}
+{add ::ptolemy::Block {label {Block} link {$TYCHO/typt/kernel/Block.itcl {}}} {}}
+{add ::tycho::HTMLExport {label {HTMLExport} link {$TYCHO/edit/visedit/HTMLExport.itcl {}}} {::tycho::Object}}
+{add ::tycho::Polygon {label {Polygon} link {$TYCHO/edit/slate/Polygon.itcl {}}} {::tycho::Line}}
+{add ::tycho::LabeledItem {label {LabeledItem} link {$TYCHO/edit/slate/LabeledItem.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::Line {label {Line} link {$TYCHO/edit/slate/Line.itcl {}}} {::tycho::Shape}}
+{add ::tycho::Monitor {label {Monitor} link {$TYCHO/kernel/gui/Monitor.itcl {}}} {::tycho::View ::tycho::Exec {;#::tycho::Query}}}
+{add ::tycho::Compile {label {Compile} link {$TYCHO/util/devtools/Compile.itcl {}}} {::tycho::Object}}
+{add ::tycho::Registry {label {Registry} link {$TYCHO/kernel/basic/Registry.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Point {label {Point} link {$TYCHO/edit/slate/Point.itcl {}}} {::tycho::Shape}}
+{add ::tycho::Follower {label {Follower} link {$TYCHO/edit/slate/Follower.itcl {}}} {::tycho::Interactor}}
+{add ::tycho::HTMLMessage {label {HTMLMessage} link {$TYCHO/kernel/html/HTMLMessage.itcl {}}} {::tycho::Message}}
+{add ::tycho::MenuBar {label {MenuBar} link {$TYCHO/kernel/gui/MenuBar.itcl {}}} {::tycho::MenuSupport}}
+{add ::tycho::ControlSubpanel {label {ControlSubpanel} link {$TYCHO/typt/controls/ControlSubpanel.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::TyDoc {label {TyDoc} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {}}
+{add ::tycho::IconOval {label {IconOval} link {$TYCHO/edit/slate/IconOval.itcl {}}} {::tycho::IconItem}}
+{add ::tycho::DomainInfo {label {DomainInfo} link {$TYCHO/typt/kernel/DomainInfo.itcl {}}} {::tycho::Object}}
+{add ::tycho::LabeledFrame {label {LabeledFrame} link {$TYCHO/edit/slate/LabeledFrame.itcl {}}} {::tycho::LabeledItem}}
+{add ::tycho::EditStack {label {EditStack} link {$TYCHO/kernel/gui/EditStack.itcl {}}} {::tycho::Edit}}
+{add ::tycho::EditPalette {label {EditPalette} link {$TYCHO/typt/edit/EditPalette.itcl {}}} {::tycho::EditForest}}
+{add ::tycho::ToneControl {label {ToneControl} link {$TYCHO/typt/controls/ToneControl.itcl {}}} {::tycho::ControlSubpanel}}
+{add ::tycho::CompileCTcl {label {CompileCTcl} link {$TYCHO/util/devtools/CompileCTcl.itcl {}}} {::tycho::Compile}}
+{add ::tycho::IconRect {label {IconRect} link {$TYCHO/edit/slate/IconRect.itcl {}}} {::tycho::IconItem}}
+{add ::tycho::LabeledGrid {label {LabeledGrid} link {$TYCHO/kernel/gui/LabeledGrid.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::ResourceFile {label {ResourceFile} link {$TYCHO/kernel/basic/ResourceFile.itcl {}}} {::tycho::Resource}}
+{add ::ptolemy::Galaxy {label {Galaxy} link {$TYCHO/typt/kernel/Galaxy.itcl {}}} {::ptolemy::Block}}
+{add ::tycho::EditSDL {label {EditSDL} link {$TYCHO/edit/textedit/EditSDL.itcl {}}} {::tycho::EditProgram}}
+{add ::tycho::EditC {label {EditC} link {$TYCHO/edit/textedit/EditC.itcl {}}} {::tycho::EditProgram}}
+{add ::tycho::StatusBar {label {StatusBar} link {$TYCHO/kernel/gui/StatusBar.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::HTMLDocSys {label {HTMLDocSys} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {::tycho::ListDocSys}}
+{add ::tycho::Reshaper {label {Reshaper} link {$TYCHO/edit/slate/Reshaper.itcl {}}} {::tycho::Follower}}
+{add ::tycho::Interactor {label {Interactor} link {$TYCHO/edit/slate/Interactor.itcl {}}} {}}
+{add ::tycho::YesNoQuery {label {YesNoQuery} link {$TYCHO/kernel/gui/YesNoQuery.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::EditSearch {label {EditSearch} link {$TYCHO/kernel/gui/EditSearch.itcl {}}} {::tycho::Query}}
+{add ::tycho::PtWelcomeMessage {label {PtWelcomeMessage} link {$TYCHO/typt/kernel/PtWelcomeMessage.itcl {}}} {::tycho::HTMLMessage}}
+{add ::tycho::Rectangle {label {Rectangle} link {$TYCHO/edit/slate/Rectangle.itcl {}}} {::tycho::Shape}}
+{add ::tycho::Axis {label {Axis} link {$TYCHO/edit/slate/Axis.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::ModelLocator {label {ModelLocator} link {$TYCHO/kernel/model/ModelLocator.itcl {}}} {::tycho::DataModel}}
+{add ::tycho::ColorPicker {label {ColorPicker} link {$TYCHO/kernel/gui/ColorPicker.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::ParametricEq {label {ParametricEq} link {$TYCHO/typt/controls/ParametricEq.itcl {}}} {::tycho::ControlSubpanel}}
+{add ::tycho::Oct {label {Oct} link {$TYCHO/typt/kernel/Oct.itcl {}}} {::tycho::Object}}
+{add ::tycho::DirectedAcyclicGraph {label {DirectedAcyclicGraph} link {$TYCHO/edit/visedit/DirectedAcyclicGraph.itcl {}}} {::tycho::Graph}}
+{add ::tycho::EditProgram {label {EditProgram} link {$TYCHO/edit/textedit/EditProgram.itcl {}}} {::tycho::Edit}}
+{add ::tycho::RevControlRCS {label {RevControlRCS} link {$TYCHO/kernel/gui/RevControlRCS.itcl {}}} {::tycho::RevControl}}
+{add ::tycho::Object {label {Object} link {$TYCHO/kernel/basic/Object.itcl {}}} {}}
+{add ::tycho::StyleEditor {label {StyleEditor} link {$TYCHO/kernel/gui/StyleEditor.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::ControlPanel {label {ControlPanel} link {$TYCHO/typt/controls/ControlPanel.itcl {}}} {::tycho::View}}
+{add ::tycho::Selector {label {Selector} link {$TYCHO/edit/slate/Selector.itcl {}}} {::tycho::Interactor}}
+{add ::tycho::EditSTD {label {EditSTD} link {$TYCHO/edit/visedit/EditSTD.itcl {}}} {::tycho::EditBubbleAndArc}}
+{add ::tycho::EditTcl {label {EditTcl} link {$TYCHO/edit/textedit/EditTcl.itcl {}}} {::tycho::EditProgram}}
+{add ::tycho::EditMail {label {EditMail} link {$TYCHO/edit/textedit/EditMail.itcl {}}} {::tycho::Edit}}
+{add ::tycho::TArchetype {label {TArchetype} link {$TYCHO/kernel/gui/TArchetype.itcl {}}} {::itk::Archetype}}
+{add ::tycho::Uninstantiable {label {Uninstantiable} link {$TYCHO/kernel/basic/Uninstantiable.itcl {}}} {}}
+{add ::tycho::AudioIO {label {AudioIO} link {$TYCHO/typt/controls/AudioIO.itcl {}}} {::tycho::ControlSubpanel}}
+{add ::tycho::RevControlSCCS {label {RevControlSCCS} link {$TYCHO/kernel/gui/RevControlSCCS.itcl {}}} {::tycho::RevControl}}
+{add ::tycho::LabeledOval {label {LabeledOval} link {$TYCHO/edit/slate/LabeledOval.itcl {}}} {::tycho::LabeledItem}}
+{add ::tycho::TopLevel {label {TopLevel} link {$TYCHO/kernel/gui/TopLevel.itcl {}}} {::tycho::TArchetype}}
+{add ::tycho::ColorBrowser {label {ColorBrowser} link {$TYCHO/kernel/gui/ColorBrowser.itcl {}}} {::tycho::ListBrowser}}
+{add ::tycho::EditPtlang {label {EditPtlang} link {$TYCHO/typt/edit/EditPtlang.itcl {}}} {::tycho::EditCpp}}
+{add ::tycho::DocClass {label {DocClass} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {::tycho::TyDoc}}
+{add ::tycho::FileBrowser {label {FileBrowser} link {$TYCHO/kernel/gui/FileBrowser.itcl {}}} {::tycho::ListBrowser}}
+{add ::tycho::StyleChooser {label {StyleChooser} link {$TYCHO/kernel/gui/StyleChooser.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::ButtonBox {label {ButtonBox} link {$TYCHO/kernel/gui/ButtonBox.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::EditDiff {label {EditDiff} link {$TYCHO/util/devtools/EditDiff.itcl {}}} {::tycho::Edit}}
+{add ::tycho::LabeledRect {label {LabeledRect} link {$TYCHO/edit/slate/LabeledRect.itcl {}}} {::tycho::LabeledItem}}
+{add ::tycho::Shortcuts {label {Shortcuts} link {$TYCHO/kernel/gui/Shortcuts.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Builder {label {Builder} link {$TYCHO/kernel/basic/Builder.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::BuilderDialog {label {BuilderDialog} link {$TYCHO/kernel/gui/BuilderDialog.itcl {}}} {::tycho::View}}
+{add ::tycho::Shades {label {Shades} link {$TYCHO/edit/slate/Shades.itcl {}}} {::tycho::Object}}
+{add ::tycho::UserProfile {label {UserProfile} link {$TYCHO/kernel/gui/UserProfile.itcl {}}} {::tycho::DataModel}}
+{add ::tycho::File {label {File} link {$TYCHO/kernel/gui/File.itcl {}}} {::tycho::View}}
+{add ::tycho::ListBrowser {label {ListBrowser} link {$TYCHO/kernel/gui/ListBrowser.itcl {}}} {::tycho::Query}}
+{add ::tycho::DocComment {label {DocComment} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {::tycho::TyDoc}}
+{add ::tycho::LabeledLine {label {LabeledLine} link {$TYCHO/edit/slate/LabeledLine.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::CircularList {label {CircularList} link {$TYCHO/kernel/basic/CircularList.itcl {}}} {::tycho::Object}}
+{add ::tycho::WelcomeMessage {label {WelcomeMessage} link {$TYCHO/kernel/html/WelcomeMessage.itcl {}}} {::tycho::HTMLMessage}}
+{add ::tycho::MenuSupport {label {MenuSupport} link {$TYCHO/kernel/gui/MenuSupport.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::Stepper {label {Stepper} link {$TYCHO/edit/slate/Stepper.itcl {}}} {::tycho::Follower}}
+{add ::tycho::Solid {label {Solid} link {$TYCHO/edit/slate/Solid.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::EditHTML {label {EditHTML} link {$TYCHO/edit/textedit/EditHTML.itcl {}}} {::tycho::Edit}}
+{add ::tycho::ResourceMail {label {ResourceMail} link {$TYCHO/kernel/html/ResourceMail.itcl {}}} {::tycho::Resource}}
+{add ::tycho::EditMake {label {EditMake} link {$TYCHO/edit/textedit/EditMake.itcl {}}} {::tycho::EditProgram}}
+{add ::tycho::ResourceRemote {label {ResourceRemote} link {$TYCHO/kernel/html/ResourceRemote.itcl {}}} {::tycho::Resource}}
+{add ::tycho::IndexBrowser {label {IndexBrowser} link {$TYCHO/kernel/gui/IndexBrowser.itcl {}}} {::tycho::ListBrowser}}
+{add ::tycho::DocSys {label {DocSys} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {::tycho::TyDoc}}
+{add ::tycho::Retarget {label {Retarget} link {$TYCHO/typt/edit/Retarget.itcl {}}} {::tycho::EditForest}}
+{add ::tycho::Edit {label {Edit} link {$TYCHO/kernel/gui/Edit.itcl {}}} {::tycho::File}}
+{add ::tycho::Query {label {Query} link {$TYCHO/kernel/gui/Query.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::Scheduler {label {Scheduler} link {$TYCHO/typt/controls/Scheduler.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Bounder {label {Bounder} link {$TYCHO/edit/slate/Bounder.itcl {}}} {::tycho::Follower}}
+{add ::tycho::FontDialog {label {FontDialog} link {$TYCHO/kernel/gui/FontDialog.itcl {}}} {::tycho::Query}}
+{add ::tycho::ListDocSys {label {ListDocSys} link {$TYCHO/util/tydoc/TyDocMain.itcl {}}} {::tycho::DocSys}}
+{add ::tycho::Graphics {label {Graphics} link {$TYCHO/edit/visedit/Graphics.itcl {}}} {::tycho::File}}
+{add ::tycho::PopupMenu {label {PopupMenu} link {$TYCHO/kernel/gui/PopupMenu.itcl {}}} {::tycho::MenuSupport}}
+{add ::tycho::TextItemEdit {label {TextItemEdit} link {$TYCHO/edit/slate/TextItemEdit.itcl {}}} {::tycho::Interactor}}
+{add ::tycho::Graph {label {Graph} link {$TYCHO/edit/visedit/Graph.itcl {}}} {::tycho::Object}}
+{add ::tycho::StyleSheet {label {StyleSheet} link {$TYCHO/kernel/gui/StyleSheet.itcl {}}} {::tycho::DataModel}}
+{add ::tycho::ColorManager {label {ColorManager} link {$TYCHO/kernel/gui/ColorManager.itcl {}}} {::tycho::Uninstantiable}}
+{add ::tycho::Slider {label {Slider} link {$TYCHO/edit/slate/Slider.itcl {}}} {::tycho::TWidget}}
+{add ::tycho::Frame {label {Frame} link {$TYCHO/edit/slate/Frame.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::Animator {label {Animator} link {$TYCHO/edit/slate/Animator.itcl {}}} {::tycho::Interactor}}
+{add ::tycho::Forest {label {Forest} link {$TYCHO/edit/visedit/Forest.itcl {}}} {::tycho::DirectedAcyclicGraph}}
+{add ::tycho::ErrorMessage {label {ErrorMessage} link {$TYCHO/kernel/gui/ErrorMessage.itcl {}}} {::tycho::Message}}
+{add ::tycho::TWidget {label {TWidget} link {$TYCHO/kernel/gui/TWidget.itcl {}}} {::tycho::TArchetype}}
+{add ::tycho::Resource {label {Resource} link {$TYCHO/kernel/basic/Resource.itcl {}}} {::tycho::Object}}
+{add ::tycho::ResourceHTTP {label {ResourceHTTP} link {$TYCHO/kernel/html/ResourceHTTP.itcl {}}} {::tycho::ResourceRemote}}
+{add ::tycho::Dialog {label {Dialog} link {$TYCHO/kernel/gui/Dialog.itcl {}}} {::tycho::TopLevel}}
+{add ::tycho::EditPtcl {label {EditPtcl} link {$TYCHO/typt/edit/EditPtcl.itcl {}}} {::tycho::EditItcl}}
+{add ::tycho::EditForest {label {EditForest} link {$TYCHO/edit/visedit/EditForest.itcl {}}} {::tycho::EditDAG}}
+{add ::tycho::Matlab {label {Matlab} link {$TYCHO/edit/textedit/Matlab.itcl {}}} {::tycho::TclShell}}
+{add ::tycho::EditCpp {label {EditCpp} link {$TYCHO/edit/textedit/EditCpp.itcl {}}} {::tycho::EditC}}
+{add ::tycho::DragDropper {label {DragDropper} link {$TYCHO/edit/slate/DragDropper.itcl {}}} {::tycho::Follower}}
+{add ::tycho::EditDAG {label {EditDAG} link {$TYCHO/edit/visedit/EditDAG.itcl {}}} {::tycho::Graphics}}
+{add ::tycho::Grapple {label {Grapple} link {$TYCHO/edit/slate/Grapple.itcl {}}} {::tycho::ComplexItem}}
+{add ::tycho::DataModel {label {DataModel} link {$TYCHO/kernel/model/DataModel.itcl {}}} {::tycho::Model}}
+{add ::tycho::YesNoCancel {label {YesNoCancel} link {$TYCHO/kernel/gui/YesNoCancel.itcl {}}} {::tycho::YesNoQuery}}
+{add ::tycho::HTMLOutline {label {HTMLOutline} link {$TYCHO/edit/textedit/HTMLOutline.itcl {}}} {::tycho::DataModel}}
+{add ::tycho::Message {label {Message} link {$TYCHO/kernel/gui/Message.itcl {}}} {::tycho::Dialog}}
+{add ::tycho::ItclClassList {label {ItclClassList} link {$TYCHO/util/devtools/ItclClassList.itcl {}}} {::tycho::Edit}}
+{add ::tycho::Stack {label {Stack} link {$TYCHO/kernel/basic/Stack.itcl {}}} {::tycho::Object}}
+{add ::tycho::Repeater {label {Repeater} link {$TYCHO/edit/slate/Repeater.itcl {}}} {::tycho::Interactor}}
+{add ::tycho::IncrCanvas {label {IncrCanvas} link {$TYCHO/edit/slate/IncrCanvas.itcl {}}} {::itk::Widget}}
+{add ::tycho::IconItem {label {IconItem} link {$TYCHO/edit/slate/IconItem.itcl {}}} {::tycho::LabeledItem}}
+{add ::tycho::EditJava {label {EditJava} link {$TYCHO/edit/textedit/EditJava.itcl {}}} {::tycho::EditCpp}}
+{add nonClassFilesNode {label {Non-Class Files} } {}}
+{add {$TYCHO/edit/slate} {label {$TYCHO/edit/slate} } {nonClassFilesNode}}
+{add {$TYCHO/edit/textedit} {label {$TYCHO/edit/textedit} } {nonClassFilesNode}}
+{add {$TYCHO/kernel/basic} {label {$TYCHO/kernel/basic} } {nonClassFilesNode}}
+{add {$TYCHO/kernel/gui} {label {$TYCHO/kernel/gui} } {nonClassFilesNode}}
+{add {$TYCHO/lib/idx} {label {$TYCHO/lib/idx} } {nonClassFilesNode}}
+{add {$TYCHO/typt/kernel} {label {$TYCHO/typt/kernel} } {nonClassFilesNode}}
+{add {$TYCHO/util/tydoc} {label {$TYCHO/util/tydoc} } {nonClassFilesNode}}
+{add slate {label {slate} altlink {$TYCHO/edit/slate/slate.tcl {}} link {$TYCHO/edit/slate/doc/codeDoc/slate.html {}}} {$TYCHO/edit/slate}}
+{add genVCMakefile {label {genVCMakefile} altlink {$TYCHO/edit/textedit/genVCMakefile.tcl {}} link {$TYCHO/edit/textedit/doc/codeDoc/genVCMakefile.html {}}} {$TYCHO/edit/textedit}}
+{add Compat {label {Compat} altlink {$TYCHO/kernel/basic/Compat.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Compat.html {}}} {$TYCHO/kernel/basic}}
+{add List {label {List} altlink {$TYCHO/kernel/basic/List.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/List.html {}}} {$TYCHO/kernel/basic}}
+{add Loader {label {Loader} altlink {$TYCHO/kernel/basic/Loader.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Loader.html {}}} {$TYCHO/kernel/basic}}
+{add Math {label {Math} altlink {$TYCHO/kernel/basic/Math.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Math.html {}}} {$TYCHO/kernel/basic}}
+{add Misc {label {Misc} altlink {$TYCHO/kernel/basic/Misc.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Misc.html {}}} {$TYCHO/kernel/basic}}
+{add Path {label {Path} altlink {$TYCHO/kernel/basic/Path.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Path.html {}}} {$TYCHO/kernel/basic}}
+{add Startup {label {Startup} altlink {$TYCHO/kernel/basic/Startup.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Startup.html {}}} {$TYCHO/kernel/basic}}
+{add String {label {String} altlink {$TYCHO/kernel/basic/String.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/String.html {}}} {$TYCHO/kernel/basic}}
+{add Tyexec {label {Tyexec} altlink {$TYCHO/kernel/basic/Tyexec.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/Tyexec.html {}}} {$TYCHO/kernel/basic}}
+{add URLPath {label {URLPath} altlink {$TYCHO/kernel/basic/URLPath.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/URLPath.html {}}} {$TYCHO/kernel/basic}}
+{add tychoMakeClassDAG {label {tychoMakeClassDAG} altlink {$TYCHO/kernel/basic/tychoMakeClassDAG.tcl {}} link {$TYCHO/kernel/basic/doc/codeDoc/tychoMakeClassDAG.html {}}} {$TYCHO/kernel/basic}}
+{add gui {label {gui} altlink {$TYCHO/kernel/gui/gui.tcl {}} link {$TYCHO/kernel/gui/doc/codeDoc/gui.html {}}} {$TYCHO/kernel/gui}}
+{add HTMLMap2DAG {label {HTMLMap2DAG} altlink {$TYCHO/lib/idx/HTMLMap2DAG.tcl {}} link {$TYCHO/lib/idx/doc/codeDoc/HTMLMap2DAG.html {}}} {$TYCHO/lib/idx}}
+{add tychoMakeIndex {label {tychoMakeIndex} altlink {$TYCHO/lib/idx/tychoMakeIndex.tcl {}} link {$TYCHO/lib/idx/doc/codeDoc/tychoMakeIndex.html {}}} {$TYCHO/lib/idx}}
+{add Profile {label {Profile} altlink {$TYCHO/typt/kernel/Profile.itcl {}} link {$TYCHO/typt/kernel/doc/codeDoc/Profile.html {}}} {$TYCHO/typt/kernel}}
+{add tydoc {label {tydoc} altlink {$TYCHO/util/tydoc/tydoc.tcl {}} link {$TYCHO/util/tydoc/doc/codeDoc/tydoc.html {}}} {$TYCHO/util/tydoc}}

@@ -1,0 +1,1 @@
+../../../sdf/tcltk/stars/tkText.tcl

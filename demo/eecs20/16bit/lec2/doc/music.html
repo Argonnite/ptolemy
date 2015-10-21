@@ -1,0 +1,102 @@
+<!-- %W%   %G% -->
+<html>
+<head>
+<title>Musical Scale</title>
+</head>
+<body>
+[<a href="demos.html">        Demos     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/">        EECS 20 Home     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/lectures/02_Sinusoids/">             Corresponding lecture  </a>]
+<hr>
+<h1>A Brief Introduction to the Western Musical Scale</h1>
+<p>
+Several of the <a href="demos.html">audio demos</a> use
+properties of the western 12-tone musical scale.
+Here, we give a very brief introduction to the structure of this scale.
+<p>
+The human ear is extremely sensitive to harmonic relationships
+between sounds when these sounds are combined.  For example, two tones
+whose frequencies are a factor of two apart are percieved as
+being the same musical note, although one is clearly higher than
+the other.  These two notes are said to be one octave apart.
+Thus, for example, 440 Hz is the musical note A.
+So is 220 Hz and 880 Hz.
+<p>
+The twelve distinct notes in the musical scale
+are evenly distributed over one octave.  Note, however, that
+how we "evenly distribute" these tones is important.
+The arithmetic distance between A-440 and A-880 is not the
+same as the distance between A-220 and A-440.
+The notes need to be distributed geometrically, rather than
+arithmetically.  How do we do this?
+<p>
+One simple mechanism is to start with some note, say A-220,
+and multiply it by the 12-th root of two to get the next note.
+If we do this 12 times, we will have multiplied by two,
+thus arriving at the note one octave up, A-440.
+The 12-th root of two is 1.0594631.  If we multiply this
+successively, starting with A-220, we get the following
+frequencies:
+<pre>
+   A          220
+   A#         233.082
+   B          246.942
+   C          261.626
+   C#         277.183
+   D          293.665
+   D#         311.127
+   E          329.628
+   F          349.228
+   F#         369.994
+   G          391.995
+   G#         415.305
+   A          440
+</pre>
+This scale is said to have "equal temperament" and is the scale
+commonly used in western music.
+<p>
+Why twelve?  It turns out that this scale has very special properties.
+In particular, it can be constructed approximately by a very different
+procedure that emphasizes the fact that the human ear percieves
+harmonic relationships very clearly.
+This procedure is called the "circle of fifths."
+<p>
+Start with A-220 and double it to get A-440.
+These two frequencies will be percieved as being the same note,
+and will sound very pleasing together.
+If we triple it to get 660 Hz, this is no longer an A.
+However, this new frequency will also sound good in combination with
+an A.  So will half of this frequency, 330 Hz.
+Notice that 330 Hz is very close to the note E in the above scale.
+It is said to be a fifth above A.
+<p>
+We can repeat this procedure.
+Triple E-330 to get 990 Hz, and divide by two.  The result, 495 Hz,
+lies above the octave shown above, so we divide by two again to get 247.5 Hz.
+This is very close to B, which is the note a fifth above E.
+<p>
+If we continue this procedure, we get the following sequence of notes:
+A, E, B, F#, C#, G#, D#, A#, F, C, G, D, A.
+<pre>
+   A       220     vs. 220
+   A#      234.932 vs. 233.082
+   B       247.5   vs. 246.942
+   C       264.298 vs. 261.626
+   C#      278.438 vs. 277.183
+   D       297.335 vs. 293.665
+   D#      313.242 vs. 311.127
+   E       330     vs. 329.628
+   F       352.397 vs. 349.228
+   F#      371.25  vs. 369.994
+   G       396.447 vs. 391.995
+   G#      417.656 vs. 415.305
+   A       446.003 vs. 440
+</pre>
+Notice that once the circle has closed, there is an error of only 6 Hz!
+The well-tempered scale distributes this error uniformly through all the notes.
+<HR>
+Copyright &#169 1996, The Regents of the University of California.
+All rights reserved.
+<br>
+Last updated: %D%,
+comments to: <author>eal@eecs.berkeley.edu</author>

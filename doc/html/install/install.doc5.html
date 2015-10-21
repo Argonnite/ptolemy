@@ -1,0 +1,623 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc4.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc6.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+ 
+<a name="997249">
+<center><h2><a name="A.5   Troubleshooting ">A.5   Troubleshooting </a></h2></center>
+</a><a name="997253">
+<center><img src="install.doc.anc.gif"></center>This section lists common difficulties encountered when installing and running Ptolemy. This list is, of course, by no means complete. If you do not find your particular problem here, refer to the section <a href="install.doc7.html#997827">
+"Additional resources" on page &#32;A-39</a>.<p>
+</a><ul><a name="997260">
+<li><a href="install.doc5.html#997303">
+"Problems with tar files" on page &#32;A-15</a>
+</a><a name="997264">
+<li><a href="install.doc5.html#997314">
+"Problems starting pigi" on page &#32;A-16</a>
+</a><a name="997268">
+<li><a href="install.doc5.html#997383">
+"Common problems while running pigi" on page &#32;A-19</a>
+</a><a name="997272">
+<li><a href="install.doc5.html#997411">
+"Window system problems" on page &#32;A-20</a>
+</a><a name="997276">
+<li><a href="install.doc5.html#997483">
+"Problems with the compiler" on page &#32;A-23</a>
+</a><a name="997280">
+<li><a href="install.doc5.html#997541">
+"Problems compiling files" on page &#32;A-25</a>
+</a><a name="997284">
+<li><a href="install.doc5.html#997576">
+"Generated code in CGC fails to compile" on page &#32;A-26</a>
+</a><a name="997288">
+<li><a href="install.doc5.html#997589">
+"Ptolemy will not recompile" on page &#32;A-27</a>
+</a><a name="997292">
+<li><a href="install.doc5.html#997648">
+"Dynamic linking fails" on page &#32;A-29</a>
+</a><a name="997296">
+<li><a href="install.doc5.html#997665">
+"Dynamic linking and makefiles" on page &#32;A-31</a>
+</a></ul><a name="997297">
+The most recent version of this section can be found on the bottom of the Ptolemy home page at <code><a href="http://ptolemy.eecs.berkeley.edu/papers/almagest/appendixA.html">http://ptolemy.eecs.berkeley.edu/papers/almagest/appendixA.html</a></code>. The same file should be available via anonymous ftp from <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/ptolemy0.7/TROUBLE_SHOOTING_0.7">ptolemy.eecs.berkeley.edu</a></code> as <code>pub/ptolemy/ptolemy0.7.1/TROUBLE_SHOOTING_0.7.1</code>.<p>
+</a><a name="997303">
+<h3><a name="A.5.1   Problems with tar files">A.5.1   Problems with tar files</a></h3>
+</a><a name="997305">
+<h4><a name=" EOF messages while using tar on Suns"> EOF messages while using tar on Suns</a></h4>
+</a><a name="997306">
+There is a bug in the SunOS 4.1.3 version of <code>/bin/tar</code>. Sometimes a command such as:<p>
+</a><a name="997307">
+<code>gzcat foo.tar.gz | ( cd ~ptolemy/..; tar xf - )<br></code>may produce error message such as:<p>
+</a><a name="997308">
+<code>tar: read error: unexpected EOF<br></code>when reading from a pipe if the <code>tar</code> in the command is Sun's <code>/bin/tar</code>. One workaround is to use GNU tar, another is to use <code>gzcat</code> and <code>dd</code>:<p>
+</a><a name="997309">
+<code>gzcat foo.tar.gz | dd conv=sync,block |<br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;( cd ~ptolemy/..; tar xf - )</code><p>
+</a><a name="997310">
+Another workaround is to uncompress the file first, and then run <code>/bin/tar</code>:<p>
+</a><a name="997311">
+<code>gzcat foo.tar.gz &gt; foo.tar</code><p>
+</a><a name="997312">
+<code>cat foo.tar | (cd ~ptolemy/..; /bin/tar xf -)</code><p>
+</a><a name="997314">
+<h3><a name="A.5.2   Problems starting pigi">A.5.2   Problems starting pigi</a></h3>
+</a><a name="997315">
+<h4><a name=" pigi: Command not found"> pigi: Command not found</a></h4>
+</a><a name="997316">
+Running the <code>pigi</code> command is the most common way of starting up Ptolemy. If you get a message like:<p>
+</a><a name="997317">
+<pre>ptolemy@kahn 2% pigi</pre>
+</a><a name="997318">
+<pre>pigi: Command not found</pre>
+</a><a name="997319">
+<pre>ptolemy@kahn 3%</pre>
+</a><a name="997320">
+then try the following:<p>
+</a><ul><a name="997321">
+<li>The <code>pigi </code>script is located at <code>$PTOLEMY/bin/pigi</code>. If that file is not present, then you need to download the Ptolemy src file, <code>pt0.7.1.src.tar.gz</code>. This file is not optional, it contains the <code>pigi</code> script and other files necessary to run Ptolemy.
+</a><a name="997322">
+<li>Be sure that your path includes <code>$PTOLEMY/bin</code>. Under <code>csh</code>, do:
+</a></ul><a name="997323">
+<pre>set path = ($PTOLEMY/bin $PTOLEMY/bin.$PTARCH $path)</pre>
+</a><a name="997325">
+<h4><a name=" Mr. Ptolemy window does not come up"> Mr. Ptolemy window does not come up</a></h4>
+</a><a name="997326">
+Ptolemy consists of two processes, <code>vem</code> and <code>pigiRpc</code>, that communicate via Remote Procedure Calls (RPC). <code>Vem</code> is the first process that starts up, and it produces a vem console window in the upper left corner of the screen and a green demo window just below it. When <code>pigiRpc</code> starts up, you should see a window in the middle of your screen that has the Mr. Ptolemy bitmap and a brief description of the binary you are running.<p>
+</a><a name="997327">
+If the <code>pigiRpc</code> process fails to connect to the <code>vem</code> process, you won't see the Mr. Ptolemy bitmap, and the shift-middle-button menus will not be active. This problem seems to be most common on Linux machines, in part because they are often not on a network. If you are running under Linux and your installation is configured to use the network, then you may need to rebuild Ptolemy from source. See <a href="install.doc6.html#997795">
+"Linux specific bugs" on page &#32;A-37</a> for more information.<p>
+</a><a name="997331">
+If you are running on a machine that is not connected to a network, you will need to provide some network support for <code>pigi</code> to start up. <code>vem</code> and <code>pigiRpc</code> communicate with each other via RPCs, which require some intra-machine network support. One quick test is that you should be able to ping yourself:<p>
+</a><a name="997332">
+<code>/usr/etc/ping `hostname`</code><p>
+</a><a name="997333">
+There are several workarounds to this. One is to add the name of your host to the loopback line in <code>/etc/hosts</code> (here we add the name <em>myhostname</em>):<p>
+</a><a name="997334">
+<pre>127.0.0.1 		localhost myhostname</pre>
+</a><a name="997335">
+Under FreeBSD, you might have to add a fully qualified domain name. If you do not have a fully qualified domain name, sendmail might have problems. An example <code>/etc/hosts </code>entry would be:<p>
+</a><a name="997336">
+<pre>127.0.0.1		localhost myhostname myhostname.mydomain</pre>
+</a><a name="997337">
+Another solution is to use <code>route</code> to route packets to your host through the loopback interface. As <code>root</code>, type:<p>
+</a><a name="997338">
+<pre>route add `hostname` localhost 0</pre>
+</a><a name="997339">
+See the <code>ping</code>, <code>netstat</code> and <code>route</code> commands for more information about networking.<p>
+</a><a name="997340">
+If the Mr. Ptolemy image fails to come up, another thing to check is that Tycho has the proper <code>tclIndex</code> files. If you try to open a facet by typing `F', and you get a message like:<p>
+</a><a name="997341">
+<pre>invalid command name "::tycho::Oct::openFacet"</pre>
+</a><a name="997342">
+<pre>    while executing</pre>
+</a><a name="997343">
+<pre>"::tycho::Oct::openFacet"</pre>
+</a><a name="997344">
+then check to see if the <code>TYCHO</code> environment variable is mis-set. You should be able to run Ptolemy with out setting <code>$TYCHO</code>, so if it is set, try <code>unsetenv TYCHO</code> and then restarting. Also, check to see that <code>$PTOLEMY/tycho/typt/kernel/tclIndex</code> exists. This file is used by <code>pigi</code> to find the <code>::tycho::Oct::openFacet</code> command at runtime. If it does not exist, create it by running <code>make sources</code> in that directory.<p>
+</a><a name="997346">
+<h4><a name=" pigi fails to start when put in the background"> pigi fails to start when put in the background</a></h4>
+</a><a name="997347">
+A common problem occurs when <code>pigi</code> is started in the background and the user has the line<p>
+</a><a name="997349">
+<pre>stty tostop</pre>
+</a><a name="997350">
+in their <code>.login</code> or <code>.cshrc</code> file. This command configures the terminal to halt any process that is running in the background when it tries to write to the terminal. One fix is to run <code>pigi</code> in the foreground. Another fix is to eliminate this command from your login files.<p>
+</a><a name="997352">
+<h4><a name=" pigi fails to start up, giving shared library messages"> pigi fails to start up, giving shared library messages</a></h4>
+</a><a name="997353">
+On most platforms, Ptolemy is built using shared libraries. In Ptolemy 0.7.1, the Solaris2.x, HP and possibly Linux platforms use shared libraries, SunOS4.x does not. See the "Shared Library" appendix for more information about shared libraries.<p>
+</a><a name="997354">
+At run time, if shared libraries cannot be found, you may see a message under HPUX-10.x like:<p>
+</a><a name="997355">
+<pre>/usr/lib/dld.sl: Can't find path for shared library: libuprintf.sl</pre>
+</a><a name="997356">
+Under Solaris 2.x, you might see:<p>
+</a><a name="997357">
+<pre>ld.so.1: /users/cxh/pt/bin.sol2/vem: fatal: librpcserver.so: can't open file: errno=2</pre>
+</a><a name="997358">
+The message that you see may vary but the problem is that the binary cannot find the shared libraries to which it was linked. There are a few reasons this could be happening:<p>
+</a><ul><a name="997359">
+<li>The shared libraries are not where the binary expects them to be. If you are running from prebuilt binaries and your Ptolemy tree is not at <code>/users/ptolemy</code>, then this may be the problem.<br><br>If you are running from prebuilt binaries and your Ptolemy distribution is not at<br><code>/users/ptolemy</code>, then you may need to set an environment variable to indicate what path should be searched for shared libraries. Under HPUX, the environment variable is <code>SHLIB_PATH</code>; under Solaris, the environment variable is <code>LD_LIBRARY_PATH</code>. The file <code>$PTOLEMY/.cshrc</code> should contain the proper commands to set the appropriate environment variable, though you may need to uncomment some lines. For HPUX, you could type the following command. (Do not type a space after the backslashes at the end of lines, just press <code>Return</code>):
+</a></ul><a name="997360">
+<pre>setenv SHLIB_PATH {$PTOLEMY}/lib.{$PTARCH}:\ <br>	{$PTOLEMY}/octtools/lib.{$PTARCH}:\ <br>	{$PTOLEMY}/gnu/{$PTARCH}:\ <br>	{$PTOLEMY}/tcltk/itcl.{$PTARCH}/lib/itcl</pre>
+</a><a name="997361">
+For Solaris, you could type the following command (all on one line):<p>
+</a><a name="997362">
+<pre>setenv LD_LIBRARY_PATH {$PTOLEMY}/lib.{$PTARCH}:\ </pre>
+</a><a name="997363">
+<pre>	{$PTOLEMY}/octtools/lib.{$PTARCH}:\ <br>	{$PTOLEMY}/gnu/{$PTARCH}:\ <br>	{$PTOLEMY}/tcltk/itcl.{$PTARCH}/lib/itcl</pre>
+</a><a name="997364">
+<p>
+</a><a name="997365">
+It is best to place these commands in your <code>~/.cshrc</code> file. It is possible that you might have to add other directories to the shared library path. For example, the Solaris2.x Ptolemy binaries are compiled with <code>/usr/openwin/lib</code> as the location of the X windows libraries. If your X windows libraries are in another directory, then you will need to add that directory to the shared library path. See <a href="install.doc5.html#997411">
+"Window system problems" on page &#32;A-20</a>.<p>
+</a><ul><a name="997369">
+<li>You do not have a library with that exact name. You may have an earlier or later version. Recompiling Ptolemy from scratch is one solution. It may also be possible to set up symbolic links to the proper libraries from a directory on the shared library path.
+</a></ul><a name="997371">
+<h4><a name=" tycho fails to start up, giving TCL_LIBRARY messages"> tycho fails to start up, giving TCL_LIBRARY messages</a></h4>
+</a><a name="997372">
+There are several ways to start up <code>tycho</code>, the Ptolemy syntax manager. <code>$PTOLEMY/bin/tycho</code> is a link to a script that processes command line arguments and starts up the appropriate binary. If you type <code>tycho -pigi</code>, <code>tycho</code> starts up with a binary that includes the Ptolemy system. If you type just <code>tycho</code>, then <code>tycho</code> starts up with the generic <code>itkwish </code>binary that is built from the <code>itcl</code> sources, which does not include any of the Ptolemy system.<p>
+</a><a name="997373">
+If your Ptolemy distribution is not at <code>/users/ptolemy</code>, and you are running from prebuilt binaries, then if you run <code>tycho</code> with the prebuilt generic <code>itkwish</code> binary, you may see messages about:<p>
+</a><a name="997374">
+<pre>application-specific initialization failed: can't find /users/ptolemy/tcltk/itcl/lib/tcl7.4/init.tcl; perhaps you need to install Tcl or set your TCL_LIBRARY environment variable?</pre>
+</a><a name="997375">
+What's happening here is the <code>itkwish</code> binary we ship has the <code>/users/ptolemy</code> path hard-coded into it and the binary is not finding the libraries it needs. The reason this happens is that we want <code>tycho</code> to be able to run outside of Ptolemy on machines that have only generic <code>itkwish</code> installed from the <code>itcl</code> distribution. There are a few workarounds:<p>
+</a><ul><a name="997376">
+<li>Create a link from <code>/users/ptolemy</code> to the Ptolemy distribution.
+</a><a name="997377">
+<li><code>$PTOLEMY/bin/itkwish</code> is a link to a that will attempt to set your environment properly and then start the real <code>itkwish</code>. If you place <code>$PTOLEMY/bin</code> in your path before <code>$PTOLEMY/bin.$PTARCH</code>, then you will be running the <code>itkwish</code> script which might work for you.
+</a><a name="997378">
+<li>Run <code>tycho -ptiny</code> instead. The <code>tycho</code> script assumes that the Tcl installation is located in <code>$PTOLEMY/tcltk</code> if it is called with the <code>-ptiny</code>, <code>-ptrim</code> or <code>-pigi </code>arguments, so the script will do the right thing.
+</a><a name="997379">
+<li>Set environment variables in a script and then call <code>itkwish</code>:
+</a></ul><a name="997380">
+<pre>#!/bin/sh<br>TCL_LIBRARY=$PTOLEMY/tcltk/itcl/lib/tcl<br>TK_LIBRARY=$PTOLEMY/tcltk/itcl/lib/tk<br>ITCL_LIBRARY=$PTOLEMY/tcltk/itcl/lib/itcl<br>ITK_LIBRARY=$PTOLEMY/tcltk/itcl/lib/itk<br>IWIDGETS_LIBRARY=$PTOLEMY/tcltk/itcl/lib/iwidgets2.0<br>export TCL_LIBRARY TK_LIBRARY ITCL_LIBRARY<br>export ITK_LIBRARY IWIDGETS_LIBRARY<br>exec $PTOLEMY/bin/tycho $*</pre>
+</a><a name="997381">
+For further information about troubleshooting Tycho, see the <code>$PTOLEMY/tycho/doc/troubleshooting.html</code>.<p>
+</a><a name="997383">
+<h3><a name="A.5.3   Common problems while running pigi">A.5.3   Common problems while running pigi</a></h3>
+</a><a name="997384">
+<h4><a name=" X11 version of pxgraph fails to come up or displays a blank window"> X11 version of pxgraph fails to come up or displays a blank window</a></h4>
+</a><a name="997386">
+If the X11 version of  <code>pxgraph</code> program is given exceptional numbers, such as the IEEE floating-point <code>Inf</code>, -<code>Inf</code>, or <code>NaN</code> ("not a number"), then it will issue a cryptic error message "problems with input data" and will fail to display a plot. The stars that use <code>pxgraph</code> are supposed to intercept this and pop up an error message in a window. However, as of this writing, this does not work on all platforms. On such platforms, the error message, unfortunately, goes to the standard output, which may be buried several layers deep in your windowing system. It is also possible for the standard output to be lost, so that no error message appears. Thus, if you get such a <code>pxgraph</code> failure, look for instabilities in your Ptolemy schematic that would cause it to produce such exceptional numbers.<p>
+</a><a name="997390">
+<h4><a name=" Old flowgraphs do not work (facets are inconsistent)"> Old flowgraphs do not work (facets are inconsistent)</a></h4>
+</a><a name="997391">
+A <code>pigi</code> schematic contains references to icons. These icons are referenced by their location in the file system, typically using either an absolute path, a path relative to user's home directory, or a path relative to the environment variable <code>PTOLEMY</code>. If the master for any of these icons is not in the expected place, <code>vem</code> will issue a warning, telling you the facet is inconsistent, and there will be blank space in place of the icon in the schematic. To find out what icon masters are missing, run the program <code>masters</code>. Instructions for doing this are given in <a href="pigi.doc12.html#873697">
+"Copying and moving designs" on page &#32;2-50</a>. Invalid masters will be labeled "<code>INVALID</code>". You must replace the invalid reference with a reference to a valid master. The Tcl script <code>$PTOLEMY/bin/ptfixtree</code> can be useful for changing large numbers of facets. <code>$PTOLEMY/bin/ptfixtree.tcl</code> file contains limited instructions on how to use it.<p>
+</a><a name="997399">
+One typical scenario for users upgrading from an earlier version of Ptolemy is that they will have references to <code>~ptolemy </code>in the directory tree.<code> </code>But the newer version may be installed somewhere else. One solution is to use the masters program to replace references to <code>~ptolemy</code> with <code>$PTOLEMY</code>.<p>
+</a><a name="997401">
+<h4><a name=" Ptolemy simulations do not stop"> Ptolemy simulations do not stop</a></h4>
+</a><a name="997402">
+In the SDF domain, it is possible to have multirate systems where a single iteration fires a very large number of stars. This happens when the number of samples produced or consumed by various connected stars in the system are mutually prime, or they have very large least common multiples. If a simulation is taking an unreasonable amount of time, then look for such mutually prime numbers (e.g, rates such as 53:97). Sometimes, in such circumstances, it can take a long time for the simulation to respond to pushing the "stop" button. It should, however, eventually respond.<p>
+</a><a name="997403">
+<h4><a name=" Multi-porthole galaxies fail"> Multi-porthole galaxies fail</a></h4>
+</a><a name="997404">
+If a galaxy contains a input or output multi-porthole, and the icon of the galaxy is named <code>Foo.input=2</code>, <code>Foo.output=2</code>, etc., the galaxy will fail to compile. This is because Ptolemy behaves as if anything ending in <code>input=</code>X or <code>output=</code><em>X</em> must be a star. Avoid using names like <code>Foo.input=3</code> for galaxies.<p>
+</a><a name="997405">
+<h4><a name=" Star is a compiled-in star and cannot be dynamically loaded"> Star is a compiled-in star and cannot be dynamically loaded</a></h4>
+</a><a name="997406">
+When you create a new universe (schematic), the domain assigned to the universe by default is SDF. If you create stars in the palette that are from another domain and then try to run the universe, you may get the error message<p>
+</a><a name="997407">
+<pre>star `Poisson' is a compiled-in star of domain DE. Cannot dynamically load a compiled-in star class.</pre>
+</a><a name="997408">
+The solution is to change the domain of the universe by choosing edit-domain from the pigi menu (the keyboard short cut is `d').<p>
+</a><a name="997411">
+<h3><a name="A.5.4   Window system problems">A.5.4   Window system problems</a></h3>
+</a><a name="997412">
+Below we discuss various problems we've seen between Ptolemy and the X window system.<p>
+</a><a name="997415">
+<h4><a name=" Error: ld.so: libXext.so.4: not found "> Error: ld.so: libXext.so.4: not found </a></h4>
+</a><a name="997416">
+You have not installed the shared library needed by Ptolemy when it is used under OpenWindows. See <a href="install.doc4.html#998051">
+"Special considerations for use under OpenWindows" on page &#32;A-7</a>.<p>
+</a><a name="997422">
+<h4><a name=" pigi fails to start and gives a message about not finding fonts"> pigi fails to start and gives a message about not finding fonts</a></h4>
+</a><a name="997425">
+The default fonts for <code>vem</code> are specified in the file <code>$PTOLEMY/lib/pigiXRes9</code>, and also <code>pigiXRes9.bw</code> and <code>pigiXRes9.cp</code>. These files define a set of X window resources. The <code>pigiXRes9.bw</code> file is used if <code>pigi</code> is started with the <code>-bw</code> option. The <code>.pigiXRes9.cp</code> file is used in <code>pigi</code> is started with the <code>-cp</code> option. The definitions in these files can be overridden by the user. For example, a user who prefers to use microscopic fonts could set the X resource as follows:<p>
+</a><a name="997428">
+<pre>Vem*font:		*-times-medium-r-normal--*-120-*</pre>
+</a><a name="997429">
+If, however, the fonts defined in these files on not available on the system, then the Ptolemy installer should change them in the files <code>$PTOLEMY/lib/pigiXRes9*</code>.<p>
+</a><a name="997431">
+The fonts for Tk (and hence, the fonts for most of the dialog boxes) are specified in <code>$PTOLEMY/lib/tcl/ptkOptions.tcl</code>. These may similarly require modifications at some sites. In the worst case, if many standard fonts are not available, it may be necessary to redefine the default fonts built into the Tk source code, and recompile Tk. You may find the X11 program <code>xlsfonts</code> useful.<p>
+</a><a name="997433">
+<h4><a name=" Ptolemy startup window only has an OK button"> Ptolemy startup window only has an OK button</a></h4>
+</a><a name="997434">
+If the Ptolemy startup window does not have the Mr. Ptolemy bitmap and the copyright button, but instead the startup window is very small and has only an OK button, then you probably have font problems, see the section above for details about fonts.<p>
+</a><a name="997437">
+<h4><a name=" Emacs confuses .pl files with Perl or Prolog"> Emacs confuses .pl files with Perl or Prolog</a></h4>
+</a><a name="997438">
+The <code>.pl</code> extension used to define Ptolemy stars is the same extension used for the Perl and Prolog languages. Some text editors, such as Emacs, have special modes for editing Perl and Prolog files. These modes are inappropriate for editing Ptolemy files. You can add the following line to your <code>.emacs</code> file in your home directory:<p>
+</a><a name="997441">
+<code>(setq auto-mode-alist (cons '("\\.pl$" . c++-mode) auto-mode-alist))</code><p>
+</a><a name="997442">
+<h4><a name=" Problems with the colormap"> Problems with the colormap</a></h4>
+</a><a name="997444">
+Some applications, for example FrameMaker 5, allocate as many colors as they can from the colormap when they start up. This may force applications that are started later (such as <code>pigi</code>) to have access to a very restricted set of colors. If when you start <code>pigi</code>, the welcome window appears in black and white, then you may have such a situation. If the situation is worse, and there are not enough colors in the colormap for <code>vem</code> to start, then you may not even get this far. One solution is simply to exit the offending application (e.g., FrameMaker or Netscape), and restart <code>pigi</code>. A better solution is to configure the offending application to use fewer slots in the colormap. We have found that for FrameMaker 5, the following X resources (placed in your <code>.Xdefaults</code> file) usually solve the problem:<p>
+</a><a name="997448">
+<pre>Maker.targetExactColors: 2</pre>
+</a><a name="997449">
+<pre>Maker.minimumExactColors: 0</pre>
+</a><a name="997450">
+<pre>Maker.targetColorCube: 4</pre>
+</a><a name="997451">
+<pre>Maker.minimumColorCube: 1</pre>
+</a><a name="997452">
+This still leaves FrameMaker with a very rich set of colors to use. You may need to replace the 2 or 4 with smaller numbers if you have other color-intensive applications running (such as root window pictures of beaches in Tahiti).<p>
+</a><a name="997454">
+The HP window system, VUE, may not display the correct colors when running Ptolemy. If the Vem window appears with white text on a tan background, or if the Ptolemy run window appears blue instead of tan, then VUE is getting the Ptolemy colors wrong.<p>
+</a><a name="997455">
+The solution here is force VUE to use the regular Ptolemy X resources. Before starting <code>pigi</code>, in an xterm, do the following line:<br><code>xrdb -load $PTOLEMY/.Xresources<br></code>Then run <code>pigi</code>.<p>
+</a><a name="997456">
+<h4><a name=" The window manager crashes"> The window manager crashes</a></h4>
+</a><a name="997459">
+The window manager <code>twm</code> sometimes crashes when you are running Ptolemy. We do not know why. It seems to be an interaction with Tk. Our solution is to simply restart it. You may wish to make sure your configuration does not log you out when the window manager exits.<p>
+</a><a name="997460">
+<h4><a name=" Problems with Sun Sparc5s with 24 bit TCX framebuffers"> Problems with Sun Sparc5s with 24 bit TCX framebuffers</a></h4>
+</a><a name="997461">
+Some Sun Sparc5 machines have a 24 bit framebuffer called a TCX framebuffer. On these machines, <code>vem</code> will fail to start with a message like:<p>
+</a><a name="997462">
+<pre>A Serious X Error has occurred:<br>	   BadValue (integer parameter out of range for operation)<br>	   Request X_QueryColors (minor code 0)<br>Type `y' to continue, `n' to exit, `a' to abort:</pre>
+</a><a name="997463">
+The problem here is that the root window is a <code>TrueColor</code> window, which causes problems with <code>vem</code>. As a workaround, Arnaud LaPrevote suggests starting OpenWindows with<p>
+</a><a name="997464">
+<pre>openwin -server Xsun -dev /dev/fb defclass PseudoColor</pre>
+</a><a name="997465">
+It seems you can safely ignore the warning message about specified class or parameter not available that occurs during startup. This bug does not occur on the 24 bit UltraSparc framebuffer, so it seems that the <code>vem</code> bug is only tickled by the TCX frame buffer. For more information, see <code><a href="http://ptolemy.eecs.berkeley.edu/ptolemy0.7/html/sparc5tcx.html">http://ptolemy.eecs.berkeley.edu/ptolemy0.7.1/html/sparc5tcx.html</a></code>.<p>
+</a><a name="997468">
+<h4><a name=" Problems with Mac X and Ptolemy"> Problems with Mac X and Ptolemy</a></h4>
+</a><a name="997469">
+Some people have had difficulties running Ptolemy with Mac X. Tze-Wo Leung of Bell Northern Research suggests the following setup for Mac X when using Ptolemy:<p>
+</a><ul><a name="997470">
+<li>My hardware setup is: Mac IIci w/ 20 MBytes DRAM, 210 MB HD and 21" two-page display/21gs Radius B&amp;W monitor. The UNIX server is a HP 715 workstation.
+</a><a name="997471">
+<li>The `Display:' option in the `Edit Remote Command' MUST be set to `(2) Color Rootless' mode.
+</a><a name="997472">
+<li>Increasing the memory allocation of Mac X to 4 MBytes also helps. The memory size can be increased by first exiting Mac X, then using the `Get Info' option under the File menu to pop-up the file info window where one can change the memory allocation.
+</a><a name="997473">
+<li>In the control panel, the characteristics of the monitor are set to `Colors' and `256'.
+</a></ul><a name="997474">
+<h4><a name=" Problems with Exceed and Ptolemy"> Problems with Exceed and Ptolemy</a></h4>
+</a><a name="997475">
+Under Hummingbird Exceed5.0, you may need to start up another X client before starting <code>pigi</code>. If you get an error message like:<p>
+</a><a name="997476">
+<pre>Error: UGetFullTechDir: cannot read .Xdefaults `vem.technology':<br>UserMain: OpenPaletteInit() failed</pre>
+</a><a name="997477">
+then try starting up another X client such as <code>xclock</code> before starting up <code>pigi</code>.<p>
+</a><a name="997478">
+<h4><a name=" Problems with XFree86"> Problems with XFree86</a></h4>
+</a><a name="997479">
+XFree86 3.1 has problems with the <code>vem</code> Edit-Label widget. If you see messages like<p>
+</a><a name="997480">
+<pre>A Fatal Xt Toolkit Error has occurred:<br>Attempt to unmanage a child when parent is not Composite<br>Type `y' to continue, `n' to exit, `a' to abort<br>(continuing may have unpredictable consequences): </pre>
+</a><a name="997481">
+then the solution is to upgrade to XFree86 3.2.<p>
+</a><a name="997483">
+<h3><a name="A.5.5   Problems with the compiler">A.5.5   Problems with the compiler</a></h3>
+</a><a name="997484">
+The first thing to try is compiling a `hello world' program in C or C++. In C++, you should probably try using the stream functions, below is a sample file:<p>
+</a><a name="997485">
+<pre>#include &lt;stream.h&gt;</pre>
+</a><a name="997486">
+<pre>main() { cout &lt;&lt; "Hello, Ptolemy.\n"; }</pre>
+</a><a name="997487">
+Try compiling the file with <code>g++</code> <code>-v</code> and <code>-H</code> flags turned on. <code>-v</code> tells you what steps the compiler is running,<code> -H</code> tells you what include files are being read in.<p>
+</a><a name="997488">
+<code>g++ -v -H hello.cc </code><p>
+</a><a name="997489">
+Look at each step of the compilation, and pay particular attention to the assembler and loader steps. You can use the <code>-save-temps</code> gcc option to save any temporary files created in each step. Then, if necessary, you can try running each step by hand.<p>
+</a><a name="997490">
+<h4><a name=" as vs. gas "> as vs. gas </a></h4>
+</a><a name="997491">
+<code>gcc</code> can use the native assembler or the GNU assembler. Often the GNU assembler is installed as `<code>as</code>'. Check your path to see which version you are getting. <code>gcc</code> can often be configured at compiler build time to use the native assembler or the GNU assembler (<code>gas</code>), but once the compiler is built, you are stuck with one or the other assemblers. The Ptolemy project makes GNU binaries available. Most of the GNU binaries that we distribute use the native assembler, that is, they don't use <code>gas</code>. However, the hppa GNU <code>egcs-1.0.2 </code>binaries use <code>gas</code>. We distribute a <code>gas</code> binary with the hppa GNU <code>egcs-1.0.2</code>  binaries.<p>
+</a><a name="997492">
+<h4><a name=" Collect "> Collect </a></h4>
+</a><a name="997493">
+To pick up C++ constructors and destructors, <code>g++</code> can use the native loader or a program called `<code>collect</code>' (for more information, see Joe Buck's g++ Frequently Asked Questions [FAQ] described below). We usually use <code>collect</code>, because it works with the Pure Inc. tools. The collector is usually located at <code>gcc-lib/$PTARCH/COMPILER_VERSION/ld</code>, e.g. the gcc-2.7.2.2 sun4 collector might be at <code>$PTOLEMY/gnu/sun4/lib/gcc-lib/sun4/2.7.2.2/ld</code>. Note that <code>g++</code> under Solaris2.x does not use <code>collect</code>.<p>
+</a><a name="997494">
+You can pass the collector arguments so that it will print out more information. Try<p>
+</a><a name="997495">
+<code>g++ -v -Wl,-debug hello.cc</code> <br>or, if you are within Ptolemy:<p>
+</a><a name="997496">
+<pre>make LINKER="g++ -v -Wl,-debug"</pre>
+</a><a name="997497">
+If you pass <code>collect</code> the <code>-debug</code> flag, you will get a lot of output. Part of the output will include what binaries and paths collect is using. Below is part of the output the <code>collect</code> <code>-debug</code> generated by a working installation.<p>
+</a><a name="997498">
+<pre>ld_file_name        = /usr/bin/ld</pre>
+</a><a name="997499">
+<pre>c_file_name         = /users/ptolemy/bin.sun4/gcc</pre>
+</a><a name="997500">
+<pre>nm_file_name        = /usr/sww/bin/gnm</pre>
+</a><a name="997501">
+<pre>strip_file_name     = /usr/tools/gnu/bin/gstrip</pre>
+</a><a name="997502">
+<pre>c_file              = /usr/tmp/cca01064.c</pre>
+</a><a name="997503">
+<pre>o_file              = /usr/tmp/cca01064.o</pre>
+</a><a name="997504">
+<pre>COLLECT_NAMES       = /users/ptolemy/gnu/sun4/lib/gcc-lib/sun4/2.7.2.2/ld</pre>
+</a><a name="997505">
+<pre>COLLECT_GCC_OPTIONS = -v -L../../lib.sun4 -static -L../../octtools/lib.sun4 -L../../tcltk/tk.sun4/lib -L../../tcltk/tcl.sun4/lib -L/usr/X11/lib -o pigiRpc</pre>
+</a><a name="997506">
+<pre>COLLECT_GCC         = gcc</pre>
+</a><a name="997507">
+If you need to change the <code>*_file_name</code><code> </code>values, try modifying your <code>$path</code> so that the new program is in front of the program listed. For instance, if, under <code>csh</code>, one wanted to use<code> <br>/usr/local/bin/nm</code> instead of <code>/usr/sww/bin/gnm</code> in <code>nm_file_name </code>above, one would type:<p>
+</a><a name="997508">
+<code>set path=($PTOLEMY/bin $PTOLEMY/bin.$PTARCH /usr/local/bin $path)</code><p>
+</a><a name="997509">
+The collector will also respond to certain environment variables, see the source in the <code>gnu</code> tar overlay at <code>$PTOLEMY/src/gnu/src/gcc/collect2.c</code>.<p>
+</a><a name="997510">
+The collector creates a temporary file that has the constructors and destructors in it. To get collect to save the temporary file, set the following environment variable: <p>
+</a><a name="997511">
+<pre>setenv COLLECT_GCC_OPTIONS -save-temps</pre>
+</a><a name="997512">
+If the collector is getting an old version of GNU <code>nm</code>, then you could have problems. Passing the collector the <code>-debug</code> flag might help here.<p>
+</a><a name="997513">
+<h4><a name=" Error: Linker: no constructors in linked-in code!"> Error: Linker: no constructors in linked-in code!</a></h4>
+</a><a name="997514">
+If you see the above message while linking a new star, then you might be having <code>nm</code> problems. The above message seems to occur under Linux. Joe Buck says that the thing to do is:<p>
+</a><a name="997515">
+The incremental linker is searching the object file for a global symbol that has the form of a constructor for a static or global object. It then calls that constructor. Ptolemy stars use these constructors to "register" themselves on the list of known stars. You can then create instances of your new star by using its <code>clone()</code> method. If it can't find the symbols, then the new star's code isn't accessible.<p>
+</a><a name="997516">
+The "<code>nm</code>" program is used to find the constructor symbols. Perhaps you have an older version of <code>nm</code> on your system? Find the <code>.o</code> file corresponding to your star and execute<p>
+</a><a name="997517">
+<pre>/usr/bin/nm -g --no-cplus mystar.o | grep GLOBAL</pre>
+</a><a name="997518">
+<dt><code></code>
+<dd></a><a name="997520">
+<h4><a name=" Environment variables"> Environment variables</a></h4>
+</a><a name="998905">
+Shell environment variables control where the Gnu compiler looks for subprograms and include files. For more information, see<a href="install.doc4.html#998823">
+"Gnu Compiler Environment Variables" on page &#32;A-8</a>.<p>
+</a><a name="998936">
+<h4><a name=" Using trace"> Using trace</a></h4>
+</a><a name="997539">
+The SunOS4.1 <code>trace</code> command can be invaluable in determining what a program is doing at run time. If you compile with <code>gcc -v -save-temps</code> then you can try running <code>trace</code> on the various steps, and see each system call. Unfortunately, the filenames are truncated, but often this is enough to see what is going on. Solaris has a similar <code>truss</code> command.<p>
+</a><a name="997541">
+<h3><a name="A.5.6   Problems compiling files">A.5.6   Problems compiling files</a></h3>
+</a><a name="997542">
+There are several ways to handle problems while compiling files. These problems are often caused by strange interactions between <code>.h</code> files, and they occur while compiling a particular file or a set of files. Note that these problems are different than problems that occur during link time, which we discuss in <a href="install.doc5.html#997634">
+"Missing symbols while linking pigiRpc" on page &#32;A-29</a>.<p>
+</a><a name="997546">
+<h4><a name=" Using cpp to diagnose .h file problems"> Using cpp to diagnose .h file problems</a></h4>
+</a><a name="997547">
+If you are having problems with include files, try modifying a hello world program (see above) to include those files. Note that you could be getting unexpected substitutions from the C preprocessor <code>cpp</code>, so looking at the <code>cpp</code> output can be useful in solving compiler installations problems and include file problems<p>
+</a><a name="997548">
+The gcc <code>-E</code> and <code>-P</code> options are very useful in wading through include file problems. <br><code>-E</code> stops compilation after the C preprocessor runs, and outputs the resulting file. <code>-P</code> strips off the line numbers from the output.<p>
+</a><a name="997549">
+Try using the <code>-E</code> option, and look at the output file. Sometimes the problem will be obvious. Note that if your compile arguments include <code>-o</code> filename.o, then filename.o will have <code>cpp</code> text output, not the usual object file. Note further that in some compilers, the <code>-c</code> option (create a <code>.o</code> file) will override the <code>-E</code> option. If <code>-c</code> does override <code>-E</code>, you will have to grab the output of the make command and place it in a temporary file, say <code>/tmp/doit</code>, edit <br><code>/tmp/doit </code>and remove the <code>-c</code> option and then type <code>sh /tmp/doit</code>. If <code>-c</code> does not override <code>-E</code>, and you are within Ptolemy, you can try using the <code>OPTIMIZER </code>makefile flag to pass arguments to the compile. For instance: <p>
+</a><a name="997550">
+<pre>make OPTIMIZER=-E Linker.o &gt; Linker.e </pre>
+</a><a name="997551">
+Another approach is to run <code>cpp</code> and then re-run the compiler on the <code>cpp</code> output. In <code>gcc,</code> the <code>-P</code> option strips out the <code>cpp #line</code> comments. You can use <code>-E -P</code> to generate a new file that has all the cpp substitutions in it, and then try compiling the new file:<p>
+</a><a name="997552">
+<pre>make OPTIMIZER="-E -P" Linker.o &gt; tst.cc </pre>
+</a><a name="997553">
+Edit <code>tst.cc</code> and remove the first line, which will have the gcc command in it. Make <code>tst.o</code>: <p>
+</a><a name="997554">
+<pre>make OPTIMIZER="-v -H" tst.o </pre>
+</a><a name="997555">
+Using the <code>gcc</code> arguments <code>-E -dM</code> will tell you what symbols are defined by <code>cpp</code> at the end of the compile. See the <code>gcc</code> man page or the <code>gcc</code> info format file for more information.<p>
+</a><a name="997556">
+<h4><a name=" Narrowing the problem down."> Narrowing the problem down.</a></h4>
+</a><a name="997557">
+If you are having strange problems compiling one file, you might want to try to find the smallest file that causes the problem. This method can take time, but it is sometimes the only way to find a solution. One way is to wrap code in <code>#ifdef NEVER</code> ... <code>#endif</code> and narrow the bug down to one function. Changing the <code>#include</code> declarations at the top, and following the include file change can also help here. <p>
+</a><a name="997559">
+<h4><a name=" Using c++filt to demangle symbols"> Using c++filt to demangle symbols</a></h4>
+</a><a name="997560">
+When a C++ file is compiled, the symbol names found inside a <code>.o</code> file or a library file have been specially processed by the compiler. This special processing is called mangling. The symbol names may look unusual, for example, <code>makeNew__10KnownBlockPCcT1</code> is the mangled version of <code>KnownBlock::makeNew(char const *, char const *)</code>. You may find it useful to be able to convert the mangled symbol names back to the human readable C++ symbol name. Under gcc-2.7.2.2, you can use the <code>c++filt</code> program to do the conversion:<p>
+</a><a name="997561">
+<pre>cxh@brahe 9% echo "makeNew__10KnownBlockPCcT1" | c++filt</pre>
+</a><a name="997562">
+<pre>KnownBlock::makeNew(char const *, char const *)</pre>
+</a><a name="997563">
+<pre>cxh@brahe 10%</pre>
+</a><a name="997564">
+On platforms where we distribute the GNU compiler, <code>c++filt</code> can be found at <code>$PTOLEMY/bin.$PTARCH/c++filt</code>.<p>
+</a><a name="997565">
+<h4><a name=" Sources of information for compiler problems "> Sources of information for compiler problems </a></h4>
+</a><a name="997566">
+<code>$PTOLEMY/gnu/common/man/man1/gcc.1</code> contains the gcc man page. This file is shipped with the prebuilt GNU binaries. You can try placing <code>$PTOLEMY/gnu/common/man</code> in your <code>MANPATH</code> environment variable:<p>
+</a><a name="997567">
+<code>setenv MANPATH $PTOLEMY/gnu/common/man:$MANPATH</code><p>
+</a><a name="997568">
+<code>$PTOLEMY/gnu/common/info/gcc*</code> contains the GNU Info format documentation. Use Emacs (M-x info) or a program such as <code>tkinfo</code> to view the info pages (<code>tkinfo</code> is available via anonymous FTP from <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/misc">ptolemy.eecs.berkeley.edu</a></code> in <code>pub/misc</code>).<p>
+</a><a name="997571">
+<code>$PTOLEMY/src/gnu/g++FAQ.txt</code> is Joe Buck's g++ Frequently Asked Questions document in text format, (g++FAQ and other FAQs are available via anonymous FTP from <code><a href="ftp://rtfm.mit.edu/pub/usenet/news.answers">rtfm.mit.edu</a></code> in <code>pub/usenet/news.answers</code>). <p>
+</a><a name="997574">
+The following FAQs might also help: c.faq hpux.faq solaris2.faq solaris2_porting.faq sun_sysadmin.faq.<p>
+</a><a name="997576">
+<h3><a name="A.5.7   Generated code in CGC fails to compile">A.5.7   Generated code in CGC fails to compile</a></h3>
+</a><a name="997577">
+The <code>Makefile_C</code> target uses the Ptolemy makefile structure to determine platform dependencies in the C language Code Generation (CGC) domain compile command. If you are having problems with platform dependencies, you may want to use the <code>Makefile_C</code> target. Some demos, such as the CGC <code>commandLine</code> demo use the <code>Default-CGC</code> target. The <code>Default-CGC</code> target has the compiler name set as a target parameter, which is usually either <code>gcc</code> or <code>cc</code>. Unfortunately, not all machines are shipped with a working <code>cc</code> binary and not all machines have <code>gcc</code>, so we cannot choose a default that will work in all circumstances. If you do not have the compiler that is listed in the target parameter, you can do any of the following:<p>
+</a><ul><a name="997578">
+<li>Type a `T' while in the facet to bring up the Target Parameters window and change the value of <code>compilerCommand</code> to a compiler that you have.
+</a><a name="997579">
+<li>Create a link in <code>$PTOLEMY/bin.$PTARCH</code> for the compiler you don't have. For example, if you don't have <code>gcc</code>, and your <code>cc</code> is at <code>/usr/ccs/bin/cc</code>, you could do
+</a></ul><a name="997580">
+<code>cd $PTOLEMY/bin.$PTARCH; ln -s /usr/ccs/bin/cc gcc</code><p>
+</a><ul><a name="997581">
+<li>Use the <code>Makefile_C</code> target instead of the <code>Default-CGC</code> target. (Some demos still use the <code>Default-CGC</code> target so that we can continue to test that target).
+</a></ul><a name="997582">
+The targets in CGC are configured by default with reasonable guesses about the compile and link options that are required to compile the code. However, the actual options required depend on your system configuration. For instance, your default <code>cc</code> compiler may not have been configured to automatically find the X11 include files. You might, therefore, get an error message the <code>Xlib.h</code> cannot be found. You should find out where on your system <code>Xlib.h</code> is installed, use the `T edit-target' command to add a compile option of the form <code>-L</code><em>path_name</em> where <em>path_name</em> is the full path of the directory containing the file. `T edit-Target' is on the shift-middle-button menu.<p>
+</a><a name="997585">
+Certain compilers will change their behavior depending on the values of certain environment variables:<p>
+</a><ul><a name="997586">
+<li>The hppa <code>cc</code> compiler will use the <code>CCOPTS</code> environment variable. If your X11 libraries were at <code>/usr/sww/X11R5/lib</code>, then one could exit <code>pigi</code>, set the variable<br><code>setenv CCOPTS -L/usr/sww/X11R5/lib</code> and restart <code>pigi</code>. Then when you compile CGC demos with hppa <code>cc</code>, you should be able to find the proper libraries. See the hppa <code>cc</code> man page for more information. Note that under HPUX10.x, the bundled C compiler is not ANSI compliant so it may fail to compile some CGC Universes.
+</a><a name="997587">
+<li>GNU <code>gcc</code> will also use certain environment variables. The <code>LIBRARY_PATH </code>variable may help:<br><code>setenv LIBRARY_PATH /usr/sww/X11R5/lib<br></code>See the <code>gcc</code> documentation for more information. See also <a href="install.doc4.html#998823">
+"Gnu Compiler Environment Variables" on page &#32;A-8</a>.
+</a></ul><a name="997589">
+<h3><a name="A.5.8   Ptolemy will not recompile">A.5.8   Ptolemy will not recompile</a></h3>
+</a><a name="997590">
+If Ptolemy fails to recompile, you may be using a substantially different version of the GNU compiler. The system is most likely to build if you use the same tools that we used originally. The GNU tools we used are supplied with the Ptolemy distribution. We discuss common Ptolemy compilation problems below. For further information about recompiling Ptolemy, see <a href="install.doc4.html#998118">
+"Rebuilding Ptolemy From Source" on page &#32;A-10</a> and see Volume 3 of the Ptolemy Almagest, "The Ptolemy Programmer's Manual".<p>
+</a><a name="997594">
+<h4><a name=" Messages about "unexpected end of line seen" while running make"> Messages about "unexpected end of line seen" while running make</a></h4>
+</a><a name="997595">
+If you are running a version of make other than GNU make, you may see messages like:<p>
+</a><a name="997596">
+<pre>make: Fatal error in reader: ../../mk/stars.mk, line 52: Unexpected end of line seen</pre>
+</a><a name="997597">
+Ptolemy contains GNU make extensions, you must run GNU make to build Ptolemy, even if you are not using the GNU compiler. GNU make binaries are available via anonymous FTP in <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/gnu">ptolemy.eecs.berkeley.ed</a>u</code>. The Ptolemy binary tar files for hppa, sol2 and sun4 contain GNU make binaries. You can get just the GNU make binary in <code>pub/gnu/$PTARCH/make.gz</code>, where <code>PTARCH </code>is one of hppa, sol2 or sun4, or you can get the GNU make binary, along with the GNU compiler and other binaries in <code>pub/gnu/ptolemy0.7.1</code>.<p>
+</a><a name="997600">
+Apparently, older versions of GNU make, such as 3.71, can fail with a message like:<p>
+</a><a name="997601">
+<pre>../../mk/stars.mk:113: *** commands commence before first target. Stop.</pre>
+</a><a name="997602">
+If you get such a message, type <code>make -v</code> to see what version of GNU make you are running.<p>
+</a><a name="997603">
+<h4><a name=" Can I use my own version of Tcl/Tk?"> Can I use my own version of Tcl/Tk?</a></h4>
+</a><a name="997604">
+Ptolemy 0.7.1 uses <code>itcl2.2</code>, which is an extension to Tcl/Tk. If you have <code>itcl2.2</code> already installed, you may use your installed version. See <a href="install.doc4.html#998161">
+"Ptolemy and Tcl/Tk" on page &#32;A-13</a>. Tycho will not work with <code>itcl2.1</code>, you must use <code>itcl2.2</code>. Tycho is necessary for viewing the contents of stars and other important features.<p>
+</a><a name="997609">
+<h4><a name=" Can I use my own version of gcc and libg++?"> Can I use my own version of gcc and libg++?</a></h4>
+</a><a name="997612">
+Ptolemy 0.7.1 uses egcs-1.0.2, but <code>gcc-2.7.2.2</code> and <code>libg++-2.7.2</code> should also work, see <a href="install.doc5.html#997648">
+"Dynamic linking fails" on page &#32;A-29</a> for information about Gnu versions and Dynamic linking.<p>
+</a><a name="997614">
+To determine what version of gcc you are running, type <code>gcc -v</code>. To determine what version of libg++ you are running look at the libg++ filename. <p>
+</a><a name="997615">
+<pre>cxh@kahn 32% gcc -v</pre>
+</a><a name="997616">
+<pre>Reading specs from /users/ptolemy/gnu/sol2.5/lib/gcc-lib/sparc-sun-solaris2.5.1/2.7.2.2/specs</pre>
+</a><a name="997617">
+<pre>gcc version 2.7.2.2</pre>
+</a><a name="997618">
+<pre>cxh@kahn 33% ls /users/ptolemy/gnu/sol2.5/lib/libg++.so*</pre>
+</a><a name="997619">
+<pre>/users/ptolemy/gnu/sol2.5/lib/libg++.so@</pre>
+</a><a name="997620">
+<pre>/users/ptolemy/gnu/sol2.5/lib/libg++.so.2.7.2*</pre>
+</a><a name="997621">
+<p>
+</a><a name="997622">
+Ptolemy is configured to use shared library versions of <code>libg++</code> and <code>libstdc++</code> if they are supported on your platform. To compile Ptolemy from scratch, you should be sure that you have these libraries. Under Solaris, the libraries are named <code>libg++.so</code> and <code>libstdc++.so</code>. Under HPUX10.x, these libraries are named <code>libg++.sl</code> and <code>libstdc++.sl</code>. A common problem is that the proper version of gcc is installed, but only the static libraries were built.<p>
+</a><a name="997623">
+Under Solaris, you might see error messages like:<br><code>ld: fatal: relocations remain against allocatable but non-writable<br></code>The fix is to configure <code>gcc</code> and <code>libg++</code> with <code>--enable-shared</code> and build the shared libraries or to download the prebuilt Gnu binaries. See <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy0.7/html/g++shared.txt">ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/ptolemy0.7/html/g++shared.txt</code></a> for more information.<p>
+</a><a name="997626">
+<p>
+</a><a name="997627">
+<h4><a name=" Can't find genStarList or genStarTable during recompilation"> Can't find genStarList or genStarTable during recompilation</a></h4>
+</a><a name="997628">
+The solution is to include <code>$PTOLEMY/bin</code> in your path. We don't include certain files that are derived from other files. In the star directories, <code>.cc</code> and <code>.h</code> files are derived from <code>.pl </code>files, and the domainname<code>stars.cc</code> file is generated from <code>$PTOLEMY/bin/genStarTable</code>.<p>
+</a><a name="997629">
+<h4><a name=" "CGCMakefileTarget.h: No such file or directory" while linking pigiRpc"> "CGCMakefileTarget.h: No such file or directory" while linking pigiRpc</a></h4>
+</a><a name="997630">
+If you are in <code>$PTOLEMY/obj.$PTARCH/pigiRpc,</code> and you type <code>make</code>, and <code>$PTOLEMY/obj.$PTARCH/domains/cgc/targets/main/CGCMakefileTarget.o</code> does not exist, then <code>make</code> will try to create it. Unfortunately, <code>make</code> does not have the include files right, so <code>CGCMakefileTarget.h </code>is not found. There is nothing particularly special about <code>CGCMakefileTarget.o. </code>It is just first in the list of files on which <code>pigiRpc</code> depends.<p>
+</a><a name="997631">
+The workaround is to run <code>make</code> from <code>$PTOLEMY</code>, rather than <code>$PTOLEMY/obj.$PTARCH.pigiRpc</code>. <p>
+</a><a name="997632">
+Eventually, we would like to fix this so that it is not necessary to build in other directories before building in <code>$PTOLEMY/obj.$PTARCH/pigiRpc</code>. The solution here would be to move more <code>.o</code> files into <code>lib.$PTARCH</code>.<p>
+</a><a name="997634">
+<h4><a name=" Missing symbols while linking pigiRpc"> Missing symbols while linking pigiRpc</a></h4>
+</a><a name="997635">
+On the sun4 with libg++-2.5.2, if you compile pigiRpc with the g++ <code>-O</code> option, then you may have missing symbols while linking <code>pigiRpc</code>. The workaround is to upgrade to a newer version of libg++. If you are using prebuilt Gnu binaries, then you may need to set an environment variable (see <a href="install.doc4.html#998823">
+"Gnu Compiler Environment Variables" on page &#32;A-8</a>).<p>
+</a><a name="997639">
+If, at link time, you see messages about undefined symbols, and the undefined symbols begin with <code>_vt</code>, then you probably have compiler version incompatibilities. In earlier releases of <code>libg++</code>, we have seen cases where the symbol <code>vt$7istream$3ios</code> is undefined. This symbol should be present in <code>libg++.a</code>, but it seems that if the compiler is not built with <code>-O2</code>, then this symbol will not be present in <code>libg++.a</code>. The workaround is to rebuild the library by hand, with something like:<p>
+</a><a name="997640">
+<code>cd obj.$PTARCH/gnu</code><p>
+</a><a name="997641">
+<code>	make CC=/users/ptolemy/gnu/sun4/bin/gcc CXX=/users/ptolemy/gnu/sun4/bin/g++ CFLAGS="-g -O2" CXXFLAGS="-g -O2"</code><p>
+</a><a name="997642">
+Note that you can find out what files have the undefined symbols by using the Unix <code>nm</code> command. For example on Suns, the command <code>nm -o $PTOLEMY/lib.sun4/* | grep MySymbol </code>will find all the files that have symbols that contain the string <code>MySymbol</code>. See <a href="install.doc5.html#997559">
+"Using c++filt to demangle symbols" on page &#32;A-25</a> for information about how to interpret symbol names in a library.<p>
+</a><a name="997646">
+If, at link time, you see messages about undefined <code>ifstream</code> symbols in <code>libptolemy.a</code>, then the problem could be that you are using <code>gcc-2.7.2</code>, but linking against <code>gcc-2.7.2.2</code> libraries. Brian Evans pointed out that fix is to remove the <code>libg++</code> and <code>libstdc++</code> libraries in <code>$PTOLEMY/gnu/$PTARCH/lib</code> and create symbolic links to your local Gnu installation.<p>
+</a><a name="997648">
+<h3><a name="A.5.9   Dynamic linking fails">A.5.9   Dynamic linking fails</a></h3>
+</a><a name="997649">
+Ptolemy has the ability to load stars dynamically during run time. The stars are compiled into <code>.o</code> files and loaded with the Unix loader or with the <code>dlopen()</code> function. Dynamic linking is tricky and dependent on the Unix loader. There are several reasons dynamic linking can fail:<p>
+</a><ul><a name="997650">
+<li>If you are upgrading from an earlier release be sure to remove all the .o files in the directory where the source files for you star is located.
+</a><a name="997651">
+<li>If you are using prebuilt Ptolemy binaries, be sure that you are using the prebuilt Gnu compiler that is also available with the Ptolemy binaries (Ptolemy0.7.1 was built with <code>egcs-1.0.2</code>) The alternative is to rebuild Ptolemy with your local Gnu compiler, but be aware that versions earlier than <code>gcc-2.5.6</code> and <code>libg++-2.5.3 </code>have bugs. <code>gcc-2.4.x</code> and <code>libg++-2.4.x</code> and earlier are known to have serious bugs, so you may want to upgrade. For more information, see <a href="install.doc4.html#998058">
+"Gnu Installation" on page &#32;A-7</a>.
+</a><a name="997655">
+<li>If you are using prebuilt Ptolemy binaries and have the prebuilt Gnu compiler, be sure that either the Ptolemy distribution is available as <code>/users/ptolemy</code>, or you are setting the Gnu environment variables in <code>$PTOLEMY/bin/g++-setup</code>. Again, <a href="install.doc4.html#998823">
+"Gnu Compiler Environment Variables" on page &#32;A-8</a>.
+</a><a name="997656">
+<li>If, at link time, you see messages about undefined symbols, then see the section above, "Missing symbols while linking pigiRpc".
+</a><a name="997657">
+<li>Dynamic linking may not work on machines using a different release of the operating system than that used to build the Ptolemy binaries. The solution is to rebuild Ptolemy from source.
+</a><a name="997658">
+<li>If you are having problems compiling the star from Ptolemy, try running the compile by hand from the shell. Unfortunately, part of the compile command is not always visible in the vem window. To see the all of the compile command, try running a few <code>vem</code> commands, such as `i' (look-inside) to flush the vem buffer. Once you have produced a <code>.o</code> file, you can load the <code>.o</code> file into Ptolemy with the load-star command.
+</a><a name="997659">
+<li>If you cannot compile your star from the shell, try compiling a simple c++ program to verify that the compiler is working. Place the code below in a file called <code>hello.cc</code> and if you are using the Gnu compiler, try compiling it with <code>g++ -v</code>. The <code>-v</code> option will show the compiler steps.
+</a></ul><a name="997660">
+<pre>#include &lt;stream.h&gt;</pre>
+</a><a name="997661">
+<pre>main(){ cout &lt;&lt; "Hello, Ptolemy.\n";}</pre>
+</a><ul><a name="997662">
+<li>If you are having problems with undefined symbols at load time, try compiling your star with the same level of optimization as the binary was built with. We ship <code>pigiRpc</code> and <code>ptcl</code> binaries that have been compiled with <code>-O2</code>, so you may want to compile your star with <code>-O2</code>.
+</a><a name="997663">
+<li>If you are running under HPUX9.x, and you see messages like:<br><br><code>collect2: ld returned 1 exit status<br>/bin/ld: Invalid loader fixup needed<br></code><br>then you probably need to create a <code>make.template</code> file to load your stars. The problem here is that Ptolemy attempts to compile your star with default arguments, however, since HPUX9.x uses <code>shl_load()</code> style linking, you need special compiler arguments, so you need a makefile See <code>$PTOLEMY/mk/userstars.mk</code> for more information. <br><br>You may also need to upgrade your version of the Gnu assembler named <code>gas</code>. Version 2.5.2 has been reported to have the problem, while version 2.6 seems to work fine. Note that <code>gas</code> is often named <code>as</code>. If you compile your star with the <code>g++ -v</code> option, then you will see which assembler the compiler is using. You can then call the assembler with the <code>--version</code> flag to see what version the assembler is.
+</a></ul><a name="997665">
+<h3><a name="A.5.10   Dynamic linking and makefiles">A.5.10   Dynamic linking and makefiles</a></h3>
+</a><a name="997666">
+You may find it easier to use a <code>makefile</code> to build <code>.o</code> files for incremental linking. As part of the incremental linking process, <code>pigi</code> checks for the existence of a <code>Makefile</code> or <code>makefile</code> in the directory where the star resides. If a <code>Makefile</code> or <code>makefile</code> exists, then <code>make </code>XXXStarName<code>.o</code> is run, where XXXStarName<code>.o</code> is the name of the <code>.o</code> file to be incrementally loaded.<p>
+</a><a name="997667">
+Another approach is to create a <code>make.template</code> file in the directory that contains rules to convert the <code>.pl</code> file to a <code>.o</code> file. If the <code>make.template</code> file includes<code> $PTOLEMY/mk/userstars.mk</code>, then most of the configuration is done. For example, to include a star <code>SDFSensorExcitation</code>, with optimization set at <code>-O2</code>, the <code>make.template</code> would contain:<br><code>ROOT = $(PTOLEMY)<br>VPATH = .<br>OPTIMIZATION=-O2<br>include $(ROOT)/mk/config-$(PTARCH).mk<br>INCL = -I$(ROOT)/src/domains/sdf/kernel -I$(KERNDIR)<br>PL_SRCS = SDFSensorExcitation.pl<br>DOMAIN = SDF<br>include $(ROOT)/mk/userstars.mk<br></code><br>Then, from a shell, the command to execute would be <code>make -f make.template depend</code> and then, from within <code>pigi</code>, it would be possible to link in the star. See the contents of <code>userstars.mk</code> for complete instructions.<p>
+</a><a name="997668">
+If you have a star that requires multiple <code>.o</code> files, Tom Parks points out that <code>ld -r</code> might help. For example if <code>SDFWirelessChannel.o</code> uses functions from <code>Wireless.o</code>, the following commands might help:<p>
+</a><a name="997669">
+<pre>ld -r SDFWirelessChannel.o Wireless.o<br>mv a.out SDFWirelessChannel.o</pre>
+</a><a name="997670">
+To load in multiple stars, you may find the <code>ptcl</code> <code>multilink</code> command useful.<p>
+</a><a name="997671">
+<h3><a name="A.5.11   Path and/or environment variables not set in "debug" pigi">A.5.11   Path and/or environment variables not set in "debug" pigi</a></h3>
+</a><a name="997672">
+When running Ptolemy's interactive graphical interface with the debug option<p>
+</a><a name="997673">
+<code>pigi -debug</code><p>
+</a><a name="997674">
+the path may not be set correctly, or environment variables are not at their normal values. This is caused by the Gnu debugger, <code>gdb</code>, overwriting values set by the <code>pigi</code> start-up script. From the <code>gdb</code> manual:<p>
+</a><a name="997675">
+<pre>*Warning:* GDB runs your program using the shell indicated by your \QSHELL' environment variable if it exists (or \Q/bin/sh' if not). If your \QSHELL' variable names a shell that runs an initialization file--such as \Q.cshrc' for C-shell, or \Q.bashrc' for BASH--any variables you set in that file affect your program. You may wish to move setting of environment variables to files that are only run when you sign on, such as \Q.login' or \Q.profile'.</pre>
+</a><a name="997676">
+If your <code>.cshrc</code> file specifies a value for a variable, it will override anything in the pigi start-up script. If this is the case, perhaps setting the <code>SHELL</code> environment variable to <code>/bin/sh</code> before firing off the debugger will fix the problem.<p>
+</a><a name="997677">
+<h3><a name="1.5.12   DE Performance Issues">1.5.12   DE Performance Issues</a></h3>
+</a><a name="997678">
+DE Performance can be an issue with large, long-running universes. Below we discuss a few potential solutions.<p>
+</a><a name="997679">
+Tom Lane pointed out that the Calendar Queue scheduler can be slower than the old DE scheduler if your time stamps span a wide range. This is because the Calendar Queue Scheduler tries to set up too many bins spanning the range. The old DE scheduler may work faster, as it keeps a queue of current-scheduled events, which is often fairly short.<p>
+</a><a name="997680">
+Tom Lane also pointed out:<p>
+</a><a name="997681">
+<dt><code>	</code>
+<dd>	If you have both a wide range of timestamps and a lot of future events in the queue at once, you might find it would help to improve the <code>PriorityQueue</code> code to provide a genuine priority queue (i.e., a heap, with O(log N) performance) rather than a simple list like it is now. But you ought to profile first to see if that's really a time sink. </a><a name="997682">
+<dt><code>	</code>
+<dd>	Also, you have to keep in mind that the overhead for selecting a next event and firing a star is not trivial. It helps if your stars do a reasonable amount of useful work per firing.</a><a name="997683">
+A few other points that may help you:<p>
+</a><a name="997684">
+DE simulation can have certain inherently high cost, so using SDF or DE with SDF functionality inside wormholes can greatly improve performance.<p>
+</a><ul><a name="997685">
+<li>If you are running a long simulation, you should be sure that your machine is not paging or worse yet swapping, you should have plenty of memory. Usually 64Mb is enough, though 128Mb can help. Depending on what platform you are on, you may be able to use the program <code>top</code> (<a href="ftp://eecs.nwu.edu/pub/top">ftp://eecs.nwu.edu/pub/top</a>). You might also find it useful to use <code>iostat</code> to see if you are paging or swapping.
+</a><a name="997688">
+<li>One way to gain a slight amount of speed is to avoid the GUI interface entirely by using <code>ptcl</code>, which does not have Tk stars. See <a href="ptcl.doc12.html#691639">
+"Some hints on advanced uses of ptcl with pigi" on page &#32;3-19</a> for details.
+</a></ul>
+<hr><br>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc4.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc6.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+
+
+
+<address>
+<a href="mailto:ptolemy@eecs.berkeley.edu">ptolemy@eecs.berkeley.edu</a>
+</address>
+
+<i>Copyright &#169; 1990-1998, University of California.   All rights
+reserved.</i>
+<!-- Last updated: Thu Jun 11 22:45:41 1998 -->
+</body>
+</html>

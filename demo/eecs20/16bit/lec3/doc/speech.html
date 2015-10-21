@@ -1,0 +1,70 @@
+<!-- %W%   %G% -->
+<html>
+<head>
+<title>Aliasing</title>
+</head>
+<body>
+[<a href="demos.html">        Demos     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/">        EECS 20 Home     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/lectures/03_Sampling/">             Corresponding lecture  </a>]
+<hr>
+<h1>Sampling Speech Signals</h1>
+<p>
+In this demonstration, a speech signal is manipulated
+by sampling it in various ways.  The speech signal is the
+sentence, "I'm sorry Dave, I'm afraid I can't do that,"
+spoken by HAL, the computer in 2001 Space Odyssey.
+You will hear the following samples:
+<ul>
+<li>The original sound, sampled at 8kHz and played over
+the workstation audio.
+<li>The signal downsampled by discarding every second sample,
+but still played back at 8kHz.  Notice that the signal lasts only
+half as long, and the pitches have risen.
+<li>The signal downsampled by discarding 3 of every 4 samples,
+but still played back at 8kHz.  The signal is now quite short in
+duration, and entirely unintelligible.
+<li>The signal downsampled by discarding every second sample,
+but then interpolated back to the original sample rate, 8 kHz.
+Notice that now the duration and pitches are the same as the original,
+but the sound is significantly degraded.  The degradation is
+due partly to aliasing.
+</ul>
+<p>
+The speech waveform is really just a list of numbers.
+Here is a segment of speech consisting of 1000 samples:
+<p>
+<img src="speech.gif" alt="[signal display]">
+<p>
+If we zoom in to the the middle of this segment, the
+signal looks as follows:
+<p>
+<img src="speech_close.gif" alt="[signal display]">
+<p>
+This segment shows a transition between a part of the signal
+that is roughly periodic to one that is much noisier.
+The roughly periodic part corresponds to a <em>voiced</em>
+sound, like "aaaa", whereas the noisy part corresponds to an
+unvoiced sound, like "ffff".  This segment is at the transition
+between voiced and unvoiced in the "af" of "afraid".
+To emphasize that this waveform is constructed from
+samples, we can plot each sample as a dot:
+<p>
+<img src="speech_close_dots.gif" alt="[signal display]">
+<p>
+In the fourth audio sample above, a set of samples at 4 kHz
+is interpolated to get a new set of samples at 8 kHz.
+The interpoloation of the waveform can be understood intuitively by looking
+at the following picture from the <a href="aliasing.html">aliasing demo</a>.
+<p>
+<img src="unaliased.gif" alt="[signal display]">
+<p>
+If the blue signal represents a set of samples, then
+the red signal is an interpolated version.  The waveform
+is smoothly interpolated between the given samples.
+<HR>
+Copyright &#169 1996, The Regents of the University of California.
+All rights reserved.
+<br>
+Last updated: %D%,
+comments to: <author>eal@eecs.berkeley.edu</author>

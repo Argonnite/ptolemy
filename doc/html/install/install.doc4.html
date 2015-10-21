@@ -1,0 +1,365 @@
+<html><head><title></title></head>
+<body bgcolor=#ffffff>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc3.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc5.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+ 
+<a name="997980">
+<center><h2><a name="A.4   Installation">A.4   Installation</a></h2></center>
+</a><a name="997981">
+Ptolemy is a large software system that relies on a properly configured software environment. This section will take you step by step through the installation of Ptolemy, including all of the basic information required to get from an FTP archive to being able to run the system. Note that this information may have changed after the manual was printed. Thus, the most up-to-date instructions are included in <code>$PTOLEMY/doc/html/install</code>.<p>
+</a><a name="997982">
+Ptolemy is distributed in several forms:<p>
+</a><ul><a name="997983">
+<li>The Ptolemy group provides Ptolemy and Gnu tools binaries for Solaris2.5.1 and HPUX10.20. We use these two platforms for in-house development and testing, so they are more stable than other platforms.
+</a><a name="997984">
+<li>We also make binaries for other architectures available. These binaries have been contributed by users and have not been tested in-house. You can find these binaries at <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/contrib">ftp://ptolemy.eecs.berkeley.edu/pub/ptolemy/contrib</a></code>. The list of contributed binaries varies, but usually includes Linux, AIX and DEC Alpha.
+</a><a name="997987">
+<li>If your machine is not one of the two primary platforms, and we do not have contributed binaries for it, then you will have to do a compile from scratch. For more information see <a href="install.doc4.html#998118">
+"Rebuilding Ptolemy From Source" on page &#32;A-10</a>.
+</a></ul><a name="997991">
+<h3><a name="A.4.1   Location of the Ptolemy installation">A.4.1   Location of the Ptolemy installation</a></h3>
+</a><a name="997992">
+The Ptolemy system uses the environment variable <code>$PTOLEMY</code> to locate the Ptolemy distribution. If you are rebuilding Ptolemy from sources without using any prebuilt Ptolemy binaries, then you can set <code>$PTOLEMY</code> to any location. If you are using prebuilt binaries, then there are a few issues concerning exactly to what value <code>$PTOLEMY</code> is set. The issues occur because certain facilities, such as shared libraries, the Gnu compiler and Tcl/Tk save certain pathnames at build time. If at run time, certain files cannot be found that were present at build time, then there will be various failures.<p>
+</a><a name="997993">
+The Ptolemy binaries that we distribute were built with <code>$PTOLEMY</code> equal to<br><code>/users/ptolemy</code>. If you can create a symbolic link from <code>/users/ptolemy</code> to your Ptolemy distribution, then you may find using the prebuilt binaries easier. If you cannot create a link and are using prebuilt binaries, then be aware of the following points:<p>
+</a><ul><a name="997994">
+<li>To use Ptolemy, you will need to set your <code>PTOLEMY</code> environment variable to the location of the distribution. For example, if your Ptolemy distribution was in <code>/usr/local/ptolemy</code>, then under C shell (<code>/bin/csh</code>), you would type<br> <code>setenv PTOLEMY /usr/local/ptolemy</code>.
+</a><a name="997995">
+<li>If you are using prebuilt binaries that were built with <code>$PTOLEMY</code> equal to <code>/users/ptolemy</code>, but your Ptolemy distribution is not at <code>/users/ptolemy</code>, then you may need to set <code>LD_LIBRARY_PATH</code> or <code>SHLIB_PATH</code> so that the binaries can find the appropriate shared libraries at run time. The <code>pigi</code> script will attempt to properly set <code>LD_LIBRARY_PATH</code> if it is not already set, but the <code>pigi</code> script is easily fooled. See <code>$PTOLEMY/.cshrc</code> for sample C shell commands that set the appropriate variable. See also <a href="install.doc5.html#997352">
+"pigi fails to start up, giving shared library messages" on page &#32;A-17</a>, and <a href="sharedlib.doc.html#11125">
+"Shared Libraries" on page &#32;D-1</a>.
+</a><a name="998002">
+<li>If you are compiling Ptolemy using the prebuilt Gnu binaries that we provide, and the Ptolemy distribution is not at <code>/users/ptolemy</code>, then you will need to set an additional environment variable, see <a href="install.doc4.html#998058">
+"Gnu Installation" on page &#32;A-7</a> for more information.
+</a><a name="998006">
+<li>If you are using prebuilt binaries, and the Ptolemy distribution is not at <code>/users/ptolemy</code>, then the <code>tycho</code> command may fail for you. For a workaround, see <a href="install.doc5.html#997371">
+"tycho fails to start up, giving TCL_LIBRARY messages" on page &#32;A-18</a>.
+</a></ul><a name="998010">
+<h3><a name="A.4.2   Basic Ptolemy installation ">A.4.2   Basic Ptolemy installation </a></h3>
+</a><a name="998011">
+First note the approximate disk space requirements for Ptolemy. The numbers below are for the Solaris version of Ptolemy, but other distributions are similar:<p>
+</a><ul><a name="998012">
+<li>Ptolemy from <code>pt-0.7.1.src.tar.gz</code> and <code>pt-0.7.1.sol2.5.tar.gz</code>: 186 Megabytes
+</a><a name="998013">
+<li>Gnu binaries for Solaris: 25 Megabytes
+</a><a name="998014">
+<li>Ptolemy from <code>pt-0.7.1.src.tar.gz</code> and <code>pt-0.7.1.sol2.5.tar.gz</code> if you remake (optional): approximately 200 Megabytes
+</a><a name="998015">
+<li>Documentation Postscript Files (optional): approximately 30 Megabytes
+</a><a name="998016">
+<li>Gnu Binary and Sources (optional): 70 Megabytes
+</a><a name="998017">
+<li>Additional Sources (needed to port Ptolemy) (optional): 32 Megabytes
+</a><a name="998018">
+<li>Complete rebuild from <code>pt-0.7.1.src.tar.gz</code>, <code>pt-0.7.1.other.src.tar.gz</code> and <code>pt-0.7.1.gnu.tar.gz</code>: under Solaris 2.5.1: 500 Megabytes
+</a></ul><a name="998019">
+<code>Important Note:</code> Although we distribute binaries, you must also install the source tree in <code>pt-0.7.1.src.tar.gz</code>. <em>Installing this src directory is not optional</em>. The <code>src</code> directory contains the Ptolemy source code, but it also contains the icons and interpreted Tcl code used in the user interface. If you absolutely must discard the source code, you can remove all files under <code>src</code> with extensions <code>.cc</code>, <code>.h</code>, or <code>.c</code>. For more information, see <a href="install.doc4.html#998181">
+"Freeing up Disk Space" on page &#32;A-14</a>.<p>
+</a><a name="998023">
+<h3><a name="A.4.3   The ptolemy user">A.4.3   The ptolemy user</a></h3>
+</a><a name="998024">
+The preferred way to install Ptolemy involves creating a fictitious user with the userid <code>ptolemy</code>, together with a home directory for the <code>ptolemy</code> user. Using the binaries is easier if the <code>ptolemy</code> user's home directory is <code>/users/ptolemy</code>. Once the <code>ptolemy</code> user account has been created, log in or <code>su</code> to user <code>ptolemy</code>. If you do not wish to create a user called <code>ptolemy</code>, see below for an alternative.<p>
+</a><a name="998025">
+<h3><a name="A.4.4   Installation without creating a ptolemy user ">A.4.4   Installation without creating a ptolemy user </a></h3>
+</a><a name="998026">
+The preferred installation technique, as indicated above, is to create a user called <code>ptolemy</code>. The reason for this is that running Ptolemy requires an appropriate user configuration. At minimum, the user's path must be set up properly. The <code>ptolemy</code> user is also configured to run an X window manager (<code>twm</code>) with suitable X resources that are known to work well. In troubleshooting an installation, having the <code>ptolemy</code> user properly configured can be very valuable. <p>
+</a><a name="998027">
+Ptolemy can be installed without creating a ptolemy user. If you do this, <em>every</em> Ptolemy user must set a <code>PTOLEMY</code> environment variable to point to the root directory of Ptolemy. The installation is the same as below, except that <code>~ptolemy</code> is replaced with <code>$PTOLEMY</code>.<p>
+</a><a name="998028">
+<h3><a name="A.4.5   Obtaining Ptolemy">A.4.5   Obtaining Ptolemy</a></h3>
+</a><a name="998030">
+Ptolemy is available via the Ptolemy Web site at <code><a href="http://ptolemy.eecs.berkeley.edu">http://ptolemy.eecs.berkeley.edu</a></code>. The Ptolemy releases can be found under the <code>Downloads</code> link. The Ptolemy release can also be found on the Ptolemy ftp site at <code><a href="ftp://ptolemy.eecs.berkeley.edu/">ftp://ptolemy.eecs.berkeley.edu/</a></code> follow the instructions in the <code>README</code> file, and be sure to download in binary mode.<p>
+</a><a name="998034">
+<h4><a name=" Untarring the distribution"> Untarring the distribution</a></h4>
+</a><a name="998035">
+Go to the directory where you either saved the downloaded <code>*.tar.gz</code> files. These files have been compressed with the Gnu <code>gzip</code> program, a compression program from the Free Software Foundation. In order to uncompress the files, you need the program <code>gzcat.</code>The <code>gzcat</code> program is available via anonymous FTP from <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/gnu">ftp://ptolemy.eecs.berkeley.edu/pub/gnu</a></code>. Now proceed as follows:<p>
+</a><dl>
+<a name="998039">
+<dt><dd>a.	 <code>gzcat pt-0.7.1.doc.tar.gz | ( cd ~ptolemy/..; tar xf - ) </code>
+</a></dl>
+<a name="998040">
+This uncompresses the documentation, changes directory to the parent of the <code>ptolemy</code> user, and then creates all of the documentation files.<p>
+</a><dl>
+<a name="998041">
+<dt><dd>b.	 <code>gzcat pt-0.7.1.src.tar.gz | ( cd ~ptolemy/..; tar xf - ) </code>
+</a></dl>
+<a name="998042">
+This uncompresses the <code>src</code> tar file and creates the source files. You must not skip this step. Ptolemy depends on these files being present. Note that you may get a few warning messages during this and the following step about the tar program not being able to create some directories because they already exist. This is expected (the same directory is mentioned in several of the tar files), so you need not worry.<p>
+</a><dl>
+<a name="998043">
+<dt><dd>c.	 If you are running the HPUX 10.20 version:<br><code>gzcat pt-0.7.1.hppa.tar.gz | ( cd ~ptolemy/..; tar xf - )<br></code>If you are running the Solaris2.5.1 version:<br><code>gzcat pt-0.7.1.sol2.5.tar.gz | ( cd ~ptolemy/..; tar xf - )<br></code>If you are running another platform for which a binary has been provided:<br><code>gzcat pt-0.7.1.</code>platform<code>.tar.gz | \ <br>		( cd ~ptolemy/..; tar xf - )<br></code>This uncompresses the binaries and creates the executable files. Note that is possible to install binaries for multiple platforms on the same file system because different directories are used for each set of binaries. Just execute whichever of the above commands apply.
+</a><a name="998044">
+<dt><dd>d.	 (Optional) If you are planning on porting Ptolemy, you will need the other sources file:<br><code>gzcat pt-0.7.1.other.src.tar.gz| \ <br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;(cd ~ptolemy/..; tar xf - )<br></code>The <code>other.src</code> tar file includes sources to a subset of <code>Octtools</code> (including<code> vem</code>), <code>Tcl/Tk</code> and <code>xv</code>. If you wish to rebuild Ptolemy completely from source, then you will need this tar file. Alternatively, you may be able to use the Octtools libraries from a binary tar file.<br>If you are planning on recompiling Ptolemy, but are really short on disk space, and you already have Tcl/Tk (comes with most Linux installations) then you can download <code>pt-0.7.1.oct.src.tar.gz</code> instead of <code>pt-0.7.1.other.src.tar.gz</code>. Note that this file has not been extensively tested. For more information, see <a href="install.doc4.html#998161">
+"Ptolemy and Tcl/Tk" on page &#32;A-13</a>
+</a><a name="998048">
+<dt><dd>e.	 (Optional) You no longer need the <code>*.tar.gz</code> files that you downloaded from the Web or FTP site. Remember to delete these files to free up disk space.
+</a><a name="998049">
+<dt><dd>f.	 (Optional) The X11 program <code>xv</code> is used by some of the image processing demos. If you already have a version of <code>xv</code>, or you don't plan on doing any image processing, you can also remove the <code>xv</code> binary in <code>$PTOLEMY/bin.$PTARCH/xv</code>.
+</a></dl>
+<a name="998051">
+<h3><a name="A.4.6   Special considerations for use under OpenWindows ">A.4.6   Special considerations for use under OpenWindows </a></h3>
+</a><a name="998052">
+Ptolemy was developed using the X11R4 through X11R6 distributions from MIT. Although Ptolemy runs fine under OpenWindows 2, there are problems with running the Ptolemy graphical interface with OpenWindows version 3.0 under SunOS4.x. Some users have had no problems at all, but others have had intermittent problems such as "bad match" errors. We believe this may be a problem with the X-server supplied with the OpenWindows &#32;3.0, but the error is elusive and we have not yet tracked it down. These problems seem not to occur in OpenWindows 3.3 and later (OW3.3 was distributed with Solaris2.3).<p>
+</a><a name="998053">
+In order for all utilities included with this distribution to work under OpenWindows 2, you must install the shared libraries for the Athena widgets (the freely redistributable widget set from the MIT X11 distribution), which are provided with this distribution under the <code>$PTOLEMY/athena.sun4</code> directory. To install them, become root and copy all files in that directory into <code>/usr/openwin/lib</code> (or, if you have installed OpenWindows in a non-standard place, into <code>$OPENWINHOME/lib</code>). If you do not wish to do this, you could leave them in place and have every Ptolemy user change their <code>LD_LIBRARY_PATH</code> environment variable to search <code>~ptolemy/athena.sun4</code> before <code>/usr/openwin/lib</code>. Consult the Unix manual entry for the <code>ld</code> program to learn more about <code>LD_LIBRARY_PATH</code>. <p>
+</a><a name="998054">
+After installation, the <code>$PTOLEMY </code>directory will contain several scripts for starting up X11R6 (Xrun), OpenWindows with <em>olwm</em> (Xrun.ow), or OpenWindows with <em>twm</em> (Xrun.ow.twm).<p>
+</a><a name="998055">
+If only have OpenWindows, and not X11R5 or X11R6 and you plan on rebuilding from source, you may need the libraries in <code>athena.sun4</code>. <code>athena.sun4</code> is part of the <code>pt-0.7.1.sun4.tar.gz</code> tar file.<p>
+</a><a name="998058">
+<h3><a name="A.4.7   Gnu Installation">A.4.7   Gnu Installation</a></h3>
+</a><a name="998059">
+If you are planning on extending Ptolemy by writing your own stars and you are using prebuilt binaries, you will need to install the same compiler that was used to build the prebuilt binaries. In particular, Ptolemy supports dynamic linking of newly defined stars. <em>Dynamic linking will not work, however, if the new stars are compiled with a different version of the compiler than that used for the rest of the system</em>. Thus, you must either use the same compiler that we used for this distribution of Ptolemy or you must recompile the entire Ptolemy system. Note that this is not a complete set of Gnu software.<p>
+</a><a name="998061">
+It is also possible to build Ptolemy with other, non-Gnu C++ compilers, such as SunSoft's C++ compiler. We have built this release of Ptolemy with the following compilers:<p>
+</a><a name="998062">
+<dt><code>sol2.5.cfront		</code>
+<dd>		Sun CC, version 4.1(native) for Solaris2.5.1</a><a name="998066">
+<dt><code>hppa.cfront		</code>
+<dd>		HPUX CC version A.10.34 for HPUX 10.20<a href="#998065"><sup>1</sup></a></a><a name="998068">
+We do not distribute these non-Gnu C++ binaries. If you choose to use a non-Gnu C++ compiler, you must completely rebuild Ptolemy. The libraries in the tar files were produced by the Gnu C++ compiler and are not interoperable with code from other compilers. When you completely rebuild Ptolemy, you must be sure to first remove all previously compiled object files. Note that to compile Ptolemy with a non-Gnu C++ compiler, you will still need to use Gnu <code>make</code>.<p>
+</a><a name="998069">
+The Ptolemy 0.7.1 binaries we ship were built with egcs-1.0.2. Ptolemy 0.7.1 was also built with gcc-2.7.2.2 and libg++-2.7.2. Note that Ptolemy uses the gcc and libg++ shared libraries, if you are using your own version of gcc and libg++, it must have been configured with --enable-shared. For further information, see <a href="install.doc5.html#997609">
+"Can I use my own version of gcc and libg++?" on page &#32;A-28</a>.<p>
+</a><a name="998823">
+<h4><a name=" Gnu Compiler Environment Variables"> Gnu Compiler Environment Variables</a></h4>
+</a><a name="998074">
+The Gnu compiler is dependent upon where it was built. The executable that we supply assumes that the compiler is installed in a directory called <code>/users/ptolemy</code>. If you do not wish to rebuild the compiler, then you must either install Ptolemy in this directory, or create a symbolic link from this directory to the actual directory in which Ptolemy is installed. If you cannot install such a link, then you will still be able to run Ptolemy, <em>but you may not be able to dynamically link new stars or recompile Ptolemy</em>.<p>
+</a><a name="998076">
+Even if your Ptolemy installation in not in <code>/users/ptolemy</code> and even if you cannot create a link from <code>/users/ptolemy</code> to the actual location of Ptolemy, you may still be able to use this compiler by setting two environment variables before using the compiler. We provide a C-shell script in <code>$PTOLEMY/bin/g++-setup</code> that sets the variables. If you are running the C-shell, type: <code>source $PTOLEMY/bin/g++-setup</code> to set the variables.<p>
+</a><a name="998832">
+If you will always be using the prebuilt Gnu compiler shipped with Ptolemy with these variables, you may want to add the above command to your ~/<code>.cshrc</code> file.<p>
+</a><a name="998844">
+The script sets the following two variables:<p>
+</a><a name="998866">
+setenv C_INCLUDE_PATH \<br>       $PTOLEMY/gnu/$PTARCH/lib/gcc-lib/$PTARCH/egcs-2.90.27/include<p>
+</a><a name="998861">
+setenv GCC_EXEC_PREFIX \<br>       $PTOLEMY/gnu/$PTARCH/lib/gcc-lib/$PTARCH/egcs-2.90.27/<p>
+</a><a name="998839">
+The above assumes that the environment variable <code>PTOLEMY</code> is set to the name of the actual installation directory of Ptolemy, and <code>PTARCH</code> is set to the type of workstation (such as <code>sol2.5</code>, <code>hppa</code>, etc.).<p>
+</a><a name="998911">
+You should not set the Gnu environment variables if you are using a version of the Gnu compiler that is different from the version that we are shipping. If you are using a different version of the Gnu compiler, then you will probably need to do a complete rebuild for dynamic linking to work.<p>
+</a><a name="998924">
+See the <code>gcc</code> info format file for a complete list of environment variables. Note that <code>GCC_EXEC_PREFIX</code> must have a trailing slash, "<code>/</code>". The above variable work for Solaris2.x, if you are running SunOS4.1.3, see <a href="install.doc6.html#997813">
+"Sun OS4 specific bugs" on page &#32;A-38</a>. One symptom of having improperly set environment variables is if you see messages about:<p>
+</a><a name="998915">
+<pre>ptolemy/src/kernel/isa.h:44: conflicts with new declaration with C linkage</pre>
+</a><a name="998916">
+Another symptom is if you have missing <code>strcmp()</code> symbols at link time.<p>
+</a><a name="998917">
+If, under gcc-2.7.2.2, you get warnings about `conflict with built in declaration', and your compiler is not installed where it was built, you may need to create a link in your gcc-lib. We have also seen problems with functions that have variable numbers of arguments. If you compile the file with the <code>-v</code> option, you can see what directories <code>gcc</code> is including. You could try creating a link: <p>
+</a><a name="998918">
+<pre>(cd $PTOLEMY/gnu/$PTARCH/lib/gcc-lib/$PTARCH/2.7.2.2; \ </pre>
+</a><a name="998919">
+<pre> &#32; &#32; &#32; &#32; &#32;ln -s .. $PTARCH)</pre>
+</a><a name="998878">
+<h4><a name=" Untarring"> Untarring</a></h4>
+</a><a name="998847">
+To install the Ptolemy Gnu subset, proceed as follows: <p>
+</a><dl>
+<a name="998095">
+<dt><dd>a.	 Change to the directory that contains the files you downloaded via FTP or the Web. 
+</a></dl>
+<a name="998096">
+You should now have a <code>pt-0.7.1.gnu.</code>xxx<code>.tar.gz </code>file (where xxx is an architecture supported by Ptolemy such as <code>hppa</code> or <code>sol2.5</code>) in your current directory.<p>
+</a><dl>
+<a name="998097">
+<dt><dd>b.	 If you are running on an HP workstation under HPUX10.20 then:<br><code>gzcat pt-0.7.1.gnu.hppa.tar.gz | \ <br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;(cd ~ptolemy/..; tar xf - )</code> <br>If you are running the Solaris2.5.1 version:<br><code>gzcat pt-0.7.1.gnu.sol2.5.tar.gz | \ <br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;( cd ~ptolemy/..; tar xf - )<br></code>If you are running another platform for which we provide a tar file:<br><code>gzcat pt-0.7.1.gnu.</code>platform<code>.tar.gz | \ <br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;( cd ~ptolemy/..; tar xf - )<br></code>Note that these are single commands split over two lines for readability. Do not type a space after the backslash at the end of the first line, just press <code>Return</code>.
+</a><a name="998098">
+<dt><dd>c.	 There is also a Gnu tar file which contains the Gnu source code. You will save disk space and Ptolemy will still run if you do not untar the Gnu source code. However, if you plan to redistribute the Gnu tools (give them to anyone else) you must include sources, according to the Gnu Public License. Therefore, it may be a good idea to keep these source files around.<br>If you want to untar the Gnu source code: <br><code>gzcat pt-0.7.1.gnu.tar.gz | ( cd ~ptolemy/..; tar xf - )</code> 
+</a><a name="998099">
+<dt><dd>d.	 You no longer need the <code>*gnu*.tar.gz</code> files that your got from the FTP site or the tape. You may delete these files to free up disk space.
+</a></dl>
+<a name="998100">
+<h3><a name="A.4.8   Testing the Installation ">A.4.8   Testing the Installation </a></h3>
+</a><a name="998101">
+Note that the following tests assume that you have created a <code>ptolemy</code> user and installed the system there. One advantage of such an installation, is that the <code>ptolemy</code> user already has a working <code>.cshrc</code> and <code>.login</code> file to make start-up easier. <p>
+</a><a name="998102">
+To test Ptolemy, assuming you have set up a <code>ptolemy</code> user:<p>
+</a><dl>
+<a name="998103">
+<dt><dd>a.	 <code>login</code> as ptolemy 
+</a></dl>
+<a name="998104">
+If the X server is not already running, the <code>.login</code> script will attempt to start it. If your installation is different from ours, you may need to modify <code>.login</code> to work at your site (in particular, you may need a different <em>path</em> variable).<p>
+</a><dl>
+<a name="998105">
+<dt><dd>b.	 <code>cd demo</code> 
+</a><a name="998106">
+<dt><dd>c.	 <code>pigi</code> 
+</a></dl>
+<a name="998110">
+Follow instructions in <a href="pigi.doc2.html#873279">
+"Starting Ptolemy" on page &#32;2-2</a>.<p>
+</a><a name="998111">
+If you have not set up a <code>ptolemy</code> user, then set your <code>PTOLEMY</code> environment variable to point to the installation directory. If your Ptolemy distribution is at <code>/users/myptolemy</code>, under the C shell, you would type:<p>
+</a><a name="998112">
+<pre>setenv PTOLEMY /users/myptolemy</pre>
+</a><a name="998113">
+If you use a shell other than the C-shell consult your documentation on how to set environment variables. The next steps are to change to the Ptolemy directory and to start up Ptolemy:<p>
+</a><a name="998114">
+<pre>cd $PTOLEMY</pre>
+</a><a name="998115">
+<pre>bin/pigi</pre>
+</a><a name="998116">
+Note that the ptolemy user provides a model of a user properly configured to run Ptolemy. All the dot files (<code>.cshrc</code>, <code>.login</code> etc. ) in the home directory are set up according to the tastes of the Ptolemy authors and according the standard use of windowing software in the Ptolemy development group. <p>
+</a><a name="998118">
+<h3><a name="A.4.9   Rebuilding Ptolemy From Source ">A.4.9   Rebuilding Ptolemy From Source </a></h3>
+</a><a name="998119">
+If you wish to rebuild Ptolemy from source (this step is recommended if you plan to do major development work, such as adding a new domain), it is simply a matter of editing the appropriate configuration file and typing <code>make</code>. This is explained in a bit more detail below. Note that to rebuild completely from source, you need the <code>pt-0.7.1.other.srcs.tar.gz </code>tar overlay, as well as the <code>pt-0.7.1.src.tar.gz</code> tar overlay. If you are having problems rebuilding, you may want to look over <a href="install.doc5.html#997589">
+"Ptolemy will not recompile" on page &#32;A-27</a>.<p>
+</a><a name="998123">
+To do a build of all of Ptolemy using the Gnu compiler from the distribution, first make sure that either Ptolemy is installed in <code>/users/ptolemy</code>, or that there is a symbolic link from <code>/users/ptolemy </code>to the installation directory. Alternatively, you can try setting the environment variables described in <a href="install.doc4.html#998823">
+"Gnu Compiler Environment Variables" on page &#32;A-8</a>.<p>
+</a><a name="998127">
+<code>$PTOLEMY</code> should point to the location of the installation so that the toplevel makefile is at <code>$PTOLEMY/makefile</code>. <code>$PTARCH</code> should be set to the name of the architecture you are running. <code>$PTARCH</code> is used to select a makefile from <code>$PTOLEMY/mk/config-$PTARCH.mk</code>. The script <code>$PTOLEMY/bin/ptarch</code> will return the architecture of the machine on which it is run.<p>
+</a><a name="998128">
+Next make sure that <code>$PTOLEMY/bin.$PTARCH</code> and <code>$PTOLEMY/bin</code> are both in your path (<code>$PTOLEMY/bin.$PTARCH</code> is where the compiler is installed. <code>$PTOLEMY/bin</code> is where certain scripts used to build star lists are located). <p>
+</a><a name="998129">
+Then proceed as follows:<p>
+</a><dl>
+<a name="998130">
+<dt><dd>a.	 <code>setenv PTOLEMY /users/ptolemy</code>
+</a><a name="998131">
+<dt><dd>b.	 <code>setenv PTARCH `$PTOLEMY/bin/ptarch`</code>
+</a><a name="998132">
+<dt><dd>c.	 <code>set path = ($PTOLEMY/bin $PTOLEMY/bin.$PTARCH $path)</code>
+</a><a name="998133">
+<dt><dd>d.	 <code>cd $PTOLEMY </code>(or <code>cd /users/ptolemy</code>)
+</a></dl>
+<a name="998134">
+The toplevel makefile at <code>$PTOLEMY/makefile</code> can rebuild some or all of Ptolemy.<p>
+</a><ul><a name="998135">
+<li>To rebuild the Gnu tools, Tcl/Tk, <code>xv</code>, Octtools and Ptolemy, type <code>make bootstrap</code>. This target requires the following files: <code>pt-0.7.1.gnu.tar.gz</code>, <code>pt-0.7.1.other.src.tar.gz</code> and <code>pt-0.7.1.src.tar.gz</code>.
+</a><a name="998136">
+<li>To rebuild Tcl/Tk, <code>xv</code>, Octtools and Ptolemy, type <code>make everything</code>. This target requires the following files: <code>pt-0.7.1.other.src.tar.gz</code> and <code>pt-0.7.1.src.tar.gz</code>.
+</a><a name="998137">
+<li>To rebuild just Octtools and Ptolemy, type <br><code>make install_octtools install</code>.This target requires the following files: <code>pt-0.7.1.other.src.tar.gz</code> and <code>pt-0.7.1.src.tar.gz</code>. (If you are short on disk space, you may be able to download <code>pt-0.7.1.octtools.tar.gz</code> instead of <code>pt-0.7.1.other.src.tar.gz</code>). 
+</a><a name="998138">
+<li>To rebuild just Ptolemy, type <code>make install</code>.This target requires the following files: <code>pt-0.7.1.src.tar.gz</code>.
+</a></ul><a name="998139">
+An easier approach is to log in as "ptolemy" (assuming you created such a user). The path and environment variables are already set up for this user. Yet a third approach is to make use of the setup for this user, as follows:<p>
+</a><dl>
+<a name="998140">
+<dt><dd>a.	 <code>cd $PTOLEMY </code>(or <code>cd /users/ptolemy</code>)
+</a><a name="998141">
+<dt><dd>b.	 edit <code>$PTOLEMY/.cshrc</code> to define <code>PTOLEMY</code> correctly
+</a><a name="998142">
+<dt><dd>c.	 <code>source $PTOLEMY/.cshrc</code>
+</a><a name="998143">
+<dt><dd>d.	 <code>make install</code>
+</a></dl>
+<a name="998144">
+If you wish to customize your installation, you may have to edit the configuration files. These files are in <code>$PTOLEMY/mk</code>. The configuration files are all named <code>config-$PTARCH.mk</code> where the <code>$PTARCH</code> is something like <code>sol2.5</code> for a Sun Sparc system running Solaris2.5.1 or <code>hppa</code> for an HP Precision Architecture machine. They are included by other makefiles and define symbols specifying compiler flags, the directory where X include files are located, etc. <p>
+</a><a name="998145">
+If you wish to rebuild using a non-Gnu C++ compiler rather than <code>g++</code>, use <code>config-sol2.5.cfront.mk</code> as a starting point to produce your configuration file. This has been tested with Sun CC version 4.1 with Solaris2.5.1. For other platforms, you may need to do some tweaking. See <code>config-hppa.cfront.mk</code> for using HP CC version 4, and <code>config-irix5.cfront.mk</code> for using SGI Irix CC. Note that the term "cfront" is historical, and that not all of these compilers are actually cfront based. We use the term cfront to refer to non-Gnu C++ compilers.<p>
+</a><a name="998146">
+To rebuild the system, first adjust the configuration parameters in the appropriate configuration file. For example, if you are using the Gnu tools on a Sun Sparc running Solaris2.5.1, then you will need to adjust the <code>config-sol2.5.mk</code> file. <p>
+</a><a name="998148">
+Next, run <code>make</code>. The Ptolemy source files include extensions found only in Gnu <code>make</code>, which is included in the Gnu subset of the Ptolemy distribution. (Make sure that the Gnu tools are installed correctly.) Sun <code>make</code> will fail on certain makefiles that have Gnu <code>make</code> extensions. See <code>$PTOLEMY/src/gnu/README</code> for a discussion of Gnu <code>make</code> compatibility.<p>
+</a><a name="998149">
+You will get some warnings from the compiler, but the following warnings can safely be ignored:<p>
+</a><ul><a name="998150">
+<li>any warning about <code>file_id</code> defined but not used.
+</a><a name="998151">
+<li>any warning about <code>SccsId</code> defined but not used
+</a><a name="998152">
+<li>variable might be clobbered by <code>longjmp</code> or <code>vfor</code>'<br>This warning may be a problem under heavy optimization. We will work to remove these from future releases.
+</a><a name="998153">
+<li>many warnings about <code>cast discards const</code>.
+</a></ul><a name="998154">
+<h4><a name=" Details of how Ptolemy is built and the general layout"> Details of how Ptolemy is built and the general layout</a></h4>
+</a><a name="998155">
+Below we describe some of the details of how Ptolemy is built from sources.<p>
+</a><a name="998156">
+To build Ptolemy, you must have your <code>PTOLEMY</code> and <code>PTARCH</code> environment variables set. <code>PTOLEMY</code> is set to the location of the Ptolemy tree, <code>PTARCH</code> is set to the name of the machine architecture (the script <code>$PTOLEMY/bin/ptarch</code> will return the architecture of the machine on which it is run). The directory <code>$PTOLEMY/mk</code> contains master makefiles that are included by other makefiles (The makefile <code>include</code> directive does this for us). <code>$PTOLEMY/mk/config-$PTARCH.mk</code> refers to the makefile for the architecture <code>$PTARCH</code>. For instance, <code>$PTOLEMY/mk/config-sol2.5.1.mk</code> is the makefile that contains the Solaris2.5.1 specific details.<p>
+</a><a name="998157">
+When you change to the <code>$PTOLEMY</code> directory and type <code>make</code>, <code>$PTOLEMY/makefile</code> contains a rule that checks to see if the directory <code>$PTOLEMY/obj.$PTARCH</code> exists. If this directory does not exist, then make runs the command <code>sh MAKEARCH</code>, where <code>MAKEARCH</code> is a Bourne shell script at <code>$PTOLEMY/MAKEARCH</code>. <code>MAKEARCH</code> will create the necessary subdirectories under <code>$PTOLEMY/obj.$PTARCH</code> for <code>$PTARCH</code> if they do not exist. <p>
+</a><a name="998158">
+We split up the sources and the object files into separate directories in part to make it easier to support multiple architectures from one source tree. The directory <code>$PTOLEMY/obj.$PTARCH </code>contains the platform-dependent object files for a particular architecture. The platform-dependent binaries are installed into <code>$PTOLEMY/bin.$PTARCH</code>, and the libraries go into <code>$PTOLEMY/lib.$PTARCH</code>. Octtools, Tcl/Tk, and Gnu tools have their own set of architecture-dependent directories. The Ptolemy Programmer's Manual describes the directory tree structure in more detail.<p>
+</a><a name="998159">
+We are able to have separate object and source directories by using the <code>make</code> program's <code>VPATH</code> facility. Briefly, <code>VPATH</code> is a way of telling <code>make</code> to look in another directory for a file if that file is not present in the current directory. For more information, see the Gnu <code>make</code> documentation, in Gnu Info format files in <code>$PTOLEMY/gnu/common/info/make-*</code>.<p>
+</a><a name="998161">
+<h4><a name=" Ptolemy and Tcl/Tk"> Ptolemy and Tcl/Tk</a></h4>
+</a><a name="998163">
+Ptolemy0.7.1 uses <code>itcl2.2</code>, which is an object-oriented extension to Tcl (Tool Command Language) and Tk. <code>itcl2.2</code> includes a modified version of <code>tcl7.6</code> and <code>tk4.2</code>. If you have <code>itcl2.2</code> already installed, you may use your installed version. You will need to either edit<br><code>$PTOLEMY/mk/config-default.mk</code> or create the proper links in <code>$PTOLEMY/tcltk</code>.<p>
+</a><a name="998164">
+In theory, it is possible to build Ptolemy0.7.1 without <code>itcl2.2</code>. However, without <code>itcl2.2</code>, Tycho, the syntax manager and the Gantt chart facilities will not work. There may be other features that fail to operate. We strongly encourage you to build with <code>itcl2.2</code>. <p>
+</a><a name="998166">
+In previous releases, the layout of the <code>$PTOLEMY/tcltk</code> directory was such that Tcl and Tk were in separate directories so that upgrading Tcl and Tk could be done separately if necessary. In Ptolemy 0.7.1, we are using <code>itcl2.2</code>, the Tcl and Tk are under the <code>$PTOLEMY/tcltk/itcl*</code> directories. We have left separate <code>$PTOLEMY/tcltk/tcl*</code> and <code>$PTOLEMY/tcltk/tk*</code> directories so that we can easily support separate Tcl and Tk releases in the future.<p>
+</a><ul><a name="998167">
+<li><code>$PTOLEMY/tcltk/itcl</code> contains the architecture-independent Itcl directories <code>include</code>, <code>lib</code> and <code>man</code>. For instance, <code>tcl.h</code> might be at <code>~ptolemy/tcltk/itcl/include/tcl.h</code>.
+</a><a name="998168">
+<li><code>$PTOLEMY/tcltk/itcl.$PTARCH</code> contains the architecture-dependent Itcl directories <code>bin</code> and <code>lib</code>. For instance, on the sun4, <code>libtcl.a</code> might be at <code>~ptolemy/tcltk/itcl.sun4/lib/libtcl.a</code>.
+</a></ul><a name="998169">
+<h4><a name=" Notes for building on the sol2.5 platform (Sun4s running Solaris2.5.1)"> Notes for building on the sol2.5 platform (Sun4s running Solaris2.5.1)</a></h4>
+</a><a name="998170">
+Solaris2.5.1 is not shipped with a C compiler, and the Gnu tar file we ship does not include absolutely everything necessary to build on a compilerless Solaris2.5.1 machine. Notably,<code> bison</code> may be necessary to compile the Gnu C compiler and the Ptolemy program <code>ptlang</code>. If, when you are building the Gnu C compiler, <code>bison</code> is called and you do not have it, try using the Unix <code>touch</code> command on the offending .c file. The tar files we distribute include <code>ptlang.c</code>, which is generated from <code>ptlang.y</code>, so you should not need <code>bison</code> to compile Ptolemy. You can get a fairly complete set of Gnu tools via anonymous FTP from <code><a href="ftp://ftp.uu.net/systems/gnu/solaris2.3/">ftp://ftp.uu.net/systems/gnu/solaris2.3/</a></code>.<p>
+</a><ul><a name="998173">
+<li>If you choose to compile Gnu <code>gcc</code> with SunSoft's <code>cc</code>, be sure that you are not using <br><code>/usr/ucb/cc</code>.  &#32; &#32;Otherwise, you may see errors while compiling <code>gcc/protoize.c</code>:
+</a></ul><a name="998174">
+<pre>"/usr/include/sys/ucontext.h", line 25: syntax error before or at: stack_t</pre>
+</a><a name="998175">
+        The solution is to place <code>/opt/SUNWspro/bin</code> in your path before /<code>usr/ucb.</code><p>
+</a><ul><a name="998176">
+<li>You will need<code>/usr/ccs/bin</code> in your path to pick up <code>ar</code>, <code>lex</code> and <code>yacc</code>.
+</a><a name="998177">
+<li>If you are building gcc-2.7.2 under Solaris, you must have <code>/bin</code> in your path before <br><code>/usr/ucb</code>. See <code>$PTOLEMY/src/gnu/README </code>for more information.
+</a><a name="998178">
+<li>Under <code>sol2.5.cfront</code>, <code>$OPENWINHOME</code> must be defined to build <code>xv </code>since<code> xmkmf</code> relies on <code>$OPENWINHOME</code>. In the C shell, one would type:
+</a></ul><a name="998179">
+	<code>setenv OPENWINHOME /usr/openwin</code><p>
+</a><a name="998181">
+<h3><a name="A.4.10   Freeing up Disk Space">A.4.10   Freeing up Disk Space</a></h3>
+</a><a name="998182">
+If you are short on disk space, you can consider removing the following files<p>
+</a><ul><a name="998183">
+<li><code>$PTOLEMY/src/domains/sdf/demo/ppimage</code> (~1020 Kb). This file is used by some of the image processing demos.
+</a><a name="998184">
+<li>If you rebuild and reinstall Ptolemy from source, you may remove the <code>$PTOLEMY/obj.$PTARCH</code> directory once you are done installing.
+</a><a name="998185">
+<li>If you do not plan to rebuild Ptolemy from source, you can remove all the <code>.cc</code>, <code>.c</code> and <code>.h</code> files in the <code>$PTOLEMY/src</code> directory. Note that the <code>$PTOLEMY/src</code> directory contains the icons and interpreted Tcl code used in the user interface, so removing the <code>src</code> directory completely will prevent pigi from running.
+</a><a name="998186">
+<li>If you are very short on space, you may want to run Ptiny, a version of Ptolemy that only contains most of the SDF and DE domains. Ptiny is available via anonymous FTP from <code>ptolemy.eecs.berkeley.edu</code>. Note that Ptiny might be from an older release than the current release of the main Ptolemy distribution.
+</a></ul><a name="998188">
+<h3><a name="A.4.11   Other useful software packages">A.4.11   Other useful software packages</a></h3>
+</a><a name="998189">
+Some parts of Ptolemy use other software packages. The packages below are all available on the internet. If you have internet FTP access, you can find lots of FAQs (Frequently Asked Questions) via anonymous FTP at </a><code>pit-manager.mit.edu</a></code> in <code>/pub/usenet/news.answers</a></code>.<p>
+</a><ul><a name="998193">
+<li>The Utah Raster Toolkit (URT) is used by some of the Multimedia demos. Most of the URT utilities work with images in RLE (run-length encoded) format, so most of its utilities begin with the prefix <code>rle</code> such as is <code>rletoppm</code>. The original URT is available via anonymous FTP from <code><a href="ftp://ftp.cs.utah.edu/pub">ftp.cs.utah.edu</a></code> in <code>/pub/urt-*. </code>Note that the original URT does not include configuration files for many modern platforms, including Solaris2.5.1. We have made URT sources and binaries for Solaris2.5.1 available via anonymous ftp from <code><a href="ftp://ptolemy.eecs.berkeley.edu/pub/misc/urt">ptolemy.eecs.berkeley.edu</a></code> in <code>pub/misc/urt</a></code>.
+</a><a name="998199">
+<li>The following Gnu utilities are available via anonymous FTP from <code><a href="ftp://prep.ai.mit.edu/pub/gnu/GETTING.GNU.SOFTWARE">prep.ai.mit.edu</a></code>. See the file <code>/pub/gnu/GETTING.GNU.SOFTWARE</code> on that site. For further information, write to:
+</a></ul><a name="998202">
+Free Software Foundation<br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;675 Mass Ave<br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;Cambridge, MA 02139<br> &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32; &#32;USA<p>
+</a><a name="998203">
+Ptolemy uses the following Gnu software:<p>
+</a><a name="998204">
+	<code>ghostscript - </code>PostScript previewer. Note that <code>oct2ps</code> can use <code>ghostscript</code> to generate Encapsulated PostScript (EPS).<p>
+</a><a name="998205">
+	<code>gdb</code> - needed for <code>pigi -debug</code><p>
+</a><a name="998206">
+<code>	gzip</code> - Used to compress and uncompress files.<p>
+</a><a name="998207">
+<p>
+</a>
+<hr><br>
+ 
+<a href="title.docA.html"><IMG ALIGN = BOTTOM SRC ="top.gif" ALT="Top"></a> <a href="install.doc.html"><IMG ALIGN = BOTTOM SRC ="up.gif" ALT="Up"></a> <a href="install.doc3.html"><IMG ALIGN = BOTTOM SRC ="prev.gif" ALT="Prev"></a> <a href="install.doc5.html"><IMG ALIGN = BOTTOM SRC ="next.gif" ALT="Next"></a> <a href="install.doc8.html"><IMG ALIGN = BOTTOM SRC ="bottom.gif" ALT="Bottom"></a> <a href="content.html"><IMG ALIGN = BOTTOM SRC ="content.gif" ALT="Contents"></a> <a href="idx.html"><IMG ALIGN = BOTTOM SRC="index.gif" ALT="Index"></a> <a href="search.html"><IMG ALIGN = BOTTOM SRC="search.gif" ALT="Search"></a>
+
+<hr><br>
+
+<sup>1</sup><a name="998065">
+ On the HP, type "what /usr/bin/CC" to see what version you are running.<p>
+</a>
+
+<address>
+<a href="mailto:ptolemy@eecs.berkeley.edu">ptolemy@eecs.berkeley.edu</a>
+</address>
+
+<i>Copyright &#169; 1990-1998, University of California.   All rights
+reserved.</i>
+<!-- Last updated: Thu Jun 11 22:45:41 1998 -->
+</body>
+</html>

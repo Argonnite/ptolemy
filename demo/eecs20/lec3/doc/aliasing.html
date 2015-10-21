@@ -1,0 +1,47 @@
+<!-- %W%   %G% -->
+<html>
+<head>
+<title>Aliasing</title>
+</head>
+<body>
+[<a href="demos.html">        Demos     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/">        EECS 20 Home     </a>]
+[<a href="http://parker.eecs.berkeley.edu/~ee20/lectures/03_Sampling/">             Corresponding lecture  </a>]
+<hr>
+<h1>Aliasing</h1>
+<p>
+In the following picture, a sinusoid at 800 Hz is sampled at
+8 kHz.
+<p>
+<img src="unaliased.gif" alt="[signal display]">
+<p>
+The samples are shown in blue, and the original waveform in red.
+Notice that there are ten samples per cycle.
+In the following picture, a sinusoid at 7200 Hz is also
+sampled at 8Hz:
+<p>
+<img src="aliased.gif" alt="[signal display]">
+<p>
+The resulting samples are essentially identical
+to the samples of the 800 Hz sinusoid.
+It is impossible from the samples to tell the difference between the 800 Hz
+sinusoid and the 7200 Hz sinusoid.  This phenomenon is called
+aliasing.
+<p>
+In this demonstration, we notice that as the frequency of the waveform
+that if sample a sinusoid which has a rising frequency, at some point,
+the frequency appears to stop rising and start falling.
+This happens when the frequency of the waveform
+we sample crosses half the sampling frequency (4 kHz).
+<p>
+Note that this is the same phenomenon that can make
+wagon wheels appear to be rolling backwords in films.
+Films sample an image at 24 frames per second.  If the frequency
+of the wheel rotation gets fast enough,
+then the wheel will start to appear to roll backwards.
+<HR>
+Copyright &#169 1996, The Regents of the University of California.
+All rights reserved.
+<br>
+Last updated: %D%,
+comments to: <author>eal@eecs.berkeley.edu</author>
